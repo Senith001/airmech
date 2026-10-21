@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" width="640" height="480" role="img" aria-label="Macma outdoor condenser unit">
+  <!-- Placeholder illustration. Replace with an official Macma product photo. -->
+  <defs>
+    <linearGradient id="odBody" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#E4EAF0"/>
+    </linearGradient>
+    <radialGradient id="odGrille" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#3B4858"/>
+      <stop offset="1" stop-color="#1B2531"/>
+    </radialGradient>
+    <filter id="odShadow" x="-10%" y="-100%" width="120%" height="300%">
+      <feGaussianBlur stdDeviation="9"/>
+    </filter>
+  </defs>
+  <ellipse cx="320" cy="446" rx="270" ry="10" fill="#0F1B2A" opacity="0.14" filter="url(#odShadow)"/>
+  <rect x="90" y="412" width="90" height="22" rx="4" fill="#B9C4CF"/>
+  <rect x="460" y="412" width="90" height="22" rx="4" fill="#B9C4CF"/>
+  <rect x="40" y="36" width="560" height="384" rx="16" fill="url(#odBody)" stroke="#D2DAE3" stroke-width="2"/>
+  <circle cx="240" cy="228" r="152" fill="#DCE3EA"/>
+  <circle cx="240" cy="228" r="142" fill="url(#odGrille)"/>
+  <g fill="none" stroke="#7D8B9A" stroke-width="2">
+    <circle cx="240" cy="228" r="118"/>
+    <circle cx="240" cy="228" r="92"/>
+    <circle cx="240" cy="228" r="66"/>
+    <circle cx="240" cy="228" r="40"/>
+    <path d="M98 228h284M240 86v284"/>
+  </g>
+  <circle cx="240" cy="228" r="20" fill="#C9D2DB"/>
+  <rect x="428" y="66" width="140" height="324" rx="10" fill="#EDF1F5" stroke="#D6DEE6" stroke-width="2"/>
+  <g stroke="#C3CDD7" stroke-width="3" stroke-linecap="round">
+    <path d="M448 96h100M448 110h100M448 124h100M448 138h100M448 152h100M448 166h100"/>
+  </g>
+  <rect x="448" y="292" width="100" height="56" rx="6" fill="#E2E8EE" stroke="#D2DAE3" stroke-width="2"/>
+  <text x="448" y="376" font-family="Manrope, Arial, Helvetica, sans-serif" font-size="15" font-weight="800" letter-spacing="4" fill="#8E9BA9">MACMA</text>
+</svg>

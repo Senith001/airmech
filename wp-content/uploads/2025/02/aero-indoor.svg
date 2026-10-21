@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 320" width="800" height="320" role="img" aria-label="Macma Aero wall-mounted indoor unit">
+  <!-- Placeholder illustration. Replace with an official Macma product photo (transparent PNG/WebP works best). -->
+  <defs>
+    <linearGradient id="aeroBody" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="0.65" stop-color="#F3F6F9"/>
+      <stop offset="1" stop-color="#E3E9EF"/>
+    </linearGradient>
+    <linearGradient id="aeroSlot" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1B2531"/>
+      <stop offset="1" stop-color="#3B4858"/>
+    </linearGradient>
+    <filter id="aeroShadow" x="-10%" y="-100%" width="120%" height="300%">
+      <feGaussianBlur stdDeviation="9"/>
+    </filter>
+  </defs>
+  <ellipse cx="400" cy="284" rx="330" ry="11" fill="#0F1B2A" opacity="0.14" filter="url(#aeroShadow)"/>
+  <rect x="40" y="46" width="720" height="214" rx="30" fill="url(#aeroBody)" stroke="#D2DAE3" stroke-width="2"/>
+  <path d="M84 60h632" stroke="#E6EBF0" stroke-width="2" stroke-linecap="round"/>
+  <path d="M42 192h716" stroke="#DCE3EA" stroke-width="2"/>
+  <rect x="96" y="208" width="608" height="30" rx="15" fill="url(#aeroSlot)"/>
+  <rect x="114" y="216" width="572" height="10" rx="5" fill="#EEF2F6"/>
+  <text x="96" y="132" font-family="Manrope, Arial, Helvetica, sans-serif" font-size="22" font-weight="800" letter-spacing="7" fill="#8E9BA9">MACMA</text>
+  <rect x="612" y="110" width="92" height="32" rx="7" fill="#17212C"/>
+  <text x="658" y="133" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#7ADAF6">24°</text>
+</svg>

@@ -1,0 +1,30 @@
+
+---Downloaded files---
+The import files for: Homepage One were successfully downloaded!
+Initial max execution time = 300
+Files info:
+Site URL = https://airmech.lk
+Data file = /home/airmechl/public_html/wp-content/uploads/2025/04/demo-content-import-file_2025-04-22__04-20-40.xml
+Widget file = not defined!
+Customizer file = not defined!
+Redux files:
+coolair_option -> /home/airmechl/public_html/wp-content/uploads/2025/04/demo-redux-import-file_0-2025-04-22__04-20-40.json 
+
+
+------
+New AJAX call!
+
+
+------
+New AJAX call!
+
+
+------
+New AJAX call!
+
+
+---Importing Redux settings---
+Redux settings import for: coolair_option finished successfully!
+
+---ocdi/after_import---
+

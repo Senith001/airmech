@@ -1,0 +1,42 @@
+@import '../../../scss/base';
+
+/*Logo CSS-----------------
+--------------------------*/
+.rt-grid-figure {
+    .logo-img {
+        text-align: center;
+
+        a {
+            transition: all 0.5s;
+        }
+
+        img {
+            margin: 0 auto;           
+            transition: all 0.5s;
+            border-radius: 15px;
+        }
+        &:hover {
+            img {
+                opacity: 1;
+            }
+
+            a.back {
+                display: block;
+            }
+
+            a.back-exists {
+                display: none;
+            }
+        }
+    }
+    .logo-img.logo-gray {
+        a {
+            
+            &:hover {
+                img {
+                    opacity: 80%;                 
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,87 @@
+@import '../../../scss/base';
+
+.rts-tab-style-one{
+    .button-area{
+        padding: 30px;
+        border: 1px solid #EDEFF3;
+        border-radius: 20px;
+        background: #fff;
+        text-align: left;
+        min-width: max-content;       
+        button{
+            background: transparent !important;
+            color: #5D666F;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #EDEFF3;
+            margin-bottom: 15px;
+            font-size: 18px;
+            font-weight: 600;
+            text-align: left;
+            padding-left: 0;            
+            &:last-child{
+                border-bottom: none;
+                margin-bottom: 0;
+                padding-bottom: 0;
+            }
+            &.active{
+                color: #0B4DF5;
+            }
+        }
+    }
+    .tab-content{
+        margin-left: 25px;
+       
+        .rts-tab-content-one{
+            margin-right: -8px;            
+            font-size: 16px;
+            font-weight: 500;
+            color: #1C2539;
+            line-height: 26px;
+            margin-top: -4px;
+            margin-bottom: 24px;     
+            animation: slide-down 2s ease-out;         
+            ul{
+                list-style:none;
+                margin:20px 0 0;               
+                li{
+                    margin-bottom: 10px;                
+                    font-size: 16px;
+                    color: #5D666F;
+                    font-weight: 400;     
+                    position: relative;
+                    padding-left: 28px;
+                    &:before{
+                        content: "\e853";
+                        position: absolute;
+                        font-family: "rt-icons";
+                        left: 0;
+                        top:0;
+                        font-size: 20px;
+                        color:#0B4DF5;
+                    }              
+                }
+            }
+            a{
+                &.rts-btn{
+                    margin-top: 40px;
+                    display: block;
+                    max-width: max-content;
+                }
+            }
+        }
+    }
+}
+//Moble Layout
+@media only screen and (max-width: 1024px) {
+
+    .rstab-main.vertical ul.nav {
+        margin-right: 0;
+    }
+    .rts-tab-content-one{
+        animation: slide-down 2.5s ease-out;
+    }
+
+    .rstab-main.vertical ul.nav.bubble li a.active:after {
+        display: none;
+    }
+}

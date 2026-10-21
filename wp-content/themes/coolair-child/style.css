@@ -1,0 +1,2985 @@
+/*
+Theme Name: Coolair Child
+Template: coolair
+Version: 1.0.0
+Description: Child theme of Coolair for Air Mech custom CSS/JS and template overrides.
+*/
+
+/* ============================================================
+   AIR MECH ENGINEERING WORKS — Child theme stylesheet
+   Matches airmech.lk reference design token-for-token.
+
+   SPECIFICITY NOTE:
+   Elementor stores am-* as GLOBAL classes and emits rules as
+   `.elementor .am-foo { ... }` (specificity 0,2,0) in
+   global-<id>-frontend-desktop.css. The atomic base also emits
+   `.e-flexbox-base{display:flex;flex-direction:row;padding:10px}`.
+   To win the cascade, every layout-critical rule here is scoped
+   under `.elementor` (>= 0,2,0) and this sheet loads AFTER the
+   Elementor global CSS, so equal specificity resolves to us.
+     • am-* classes = applied via Elementor CSS Classes field
+     • g-*  classes = Elementor global IDs (shared widget styles)
+     • Never touch parent theme, header/footer, or WooCommerce shop
+   ============================================================ */
+
+/* ── Fonts ─────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap');
+
+/* ── Design tokens ─────────────────────────────────────────── */
+:root {
+  --am-navy:        #0C2340;
+  --am-navy-2:      #12305A;
+  --am-navy-3:      #1A3D6C;
+  --am-blue:        #0A6CD6;
+  --am-blue-hover:  #0858B0;
+  --am-blue-soft:   #E6F0FB;
+  --am-cyan:        #46CBF2;
+  --am-ink:         #0F1B2A;
+  --am-ink-2:       #2B3B4E;
+  --am-muted:       #546577;
+  --am-line:        #DFE5EC;
+  --am-line-strong: #C5D0DB;
+  --am-surface:     #F4F7FA;
+  --am-surface-blue:#EAF2FB;
+  --am-on-dark:     #F2F6FA;
+  --am-on-dark-muted:#B3C3D5;
+  --am-on-dark-line: rgba(255,255,255,0.14);
+  --am-radius-sm:   6px;
+  --am-radius:      10px;
+  --am-radius-lg:   16px;
+  --am-shadow:      0 12px 32px -16px rgba(15,27,42,0.24);
+  --am-section-y:   80px;
+}
+@media (min-width: 1024px) {
+  :root { --am-section-y: 96px; }
+}
+
+/* ── Global typography ──────────────────────────────────────── */
+body {
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  color: var(--am-ink);
+  -webkit-font-smoothing: antialiased;
+}
+.elementor h1,
+.elementor h2,
+.elementor h3,
+.elementor h4 {
+  font-family: 'Manrope', ui-sans-serif, system-ui, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+.elementor h1 { font-size: clamp(2.125rem, 1.5rem + 2.8vw, 3.5rem); }
+.elementor h2 { font-size: clamp(1.75rem, 1.35rem + 1.7vw, 2.5rem); }
+.elementor h3 { font-size: 1.1875rem; font-weight: 700; letter-spacing: -0.01em; }
+
+/* Neutralise the atomic flexbox base padding on our custom containers
+   (.e-flexbox-base sets padding:10px on every flexbox). */
+.elementor .am-container,
+.elementor .am-value-inner,
+.elementor .am-check-list,
+.elementor .am-btn-row,
+.elementor .am-steps,
+.elementor .am-why-left,
+.elementor .am-why-right {
+  padding-block: 0;
+}
+
+/* ============================================================
+   SECTION 1 — HERO
+   Nodes:  321832e (am-hero), 34aba151 (am-container),
+           5832af9a (am-hero-col-left), 6b36fb46 (am-hero-col-right),
+           6a6e21d5 (am-btn-row), 51f2d798 (am-check-list),
+           9c0a43d (am-hero-chip)
+   ============================================================ */
+
+.elementor .am-hero {
+  background: var(--am-navy);
+  color: var(--am-on-dark);
+  overflow: hidden;
+  display: block;
+}
+
+/* Hero inner: two-column grid matching .hero-inner */
+.elementor .am-hero > .am-container,
+.elementor .am-hero .am-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  align-items: center;
+  padding: 56px 32px 64px;
+  max-width: 1264px;
+  margin-inline: auto;
+  box-sizing: border-box;
+  width: 100%;
+  flex-direction: unset;
+}
+@media (min-width: 960px) {
+  .elementor .am-hero > .am-container,
+  .elementor .am-hero .am-container {
+    grid-template-columns: minmax(0,1fr) minmax(0,1fr);
+    gap: 56px;
+    padding: 88px 32px 96px;
+  }
+}
+
+/* Left column */
+.elementor .am-hero-col-left {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  gap: 0;
+  min-width: 0;
+  padding: 0;
+}
+
+/* Eyebrow in hero */
+.elementor .am-hero .am-hero-col-left .am-eyebrow.e-heading-base {
+  color: var(--am-cyan) !important;
+  font-size: 0.8125rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  margin-bottom: 12px !important;
+  font-family: 'Manrope', sans-serif !important;
+}
+
+/* H1 in hero */
+.elementor .am-hero h1,
+.elementor .am-hero .am-hero-col-left .e-heading-base {
+  color: #fff;
+  max-width: 15ch;
+  margin-bottom: 0.5em;
+}
+
+/* Lead paragraph in hero */
+.elementor .am-hero .am-hero-col-left .e-paragraph-base {
+  color: var(--am-on-dark-muted);
+  font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
+  max-width: 52ch;
+  margin-bottom: 1.5rem;
+  line-height: 1.7;
+}
+
+/* Button row */
+.elementor .am-btn-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+  padding: 0;
+  width: 100%;
+}
+.elementor .am-btn-row > .elementor-element,
+.elementor .am-btn-row .e-button {
+  display: inline-flex;
+  flex: 0 0 auto;
+  width: auto;
+  margin: 0;
+}
+
+/* ──────────────────────────────────────────────────────────
+   BUTTONS — real classes in DOM are am-btn-light / am-btn-outline
+   / am-btn-primary (anchors carry .e-button-base themselves).
+   Base reset first, then per-variant + context styling.
+   ────────────────────────────────────────────────────────── */
+
+/* Neutralise the atomic blue default on every am button */
+.elementor a.e-button-base.am-btn-light,
+.elementor a.e-button-base.am-btn-outline,
+.elementor a.e-button-base.am-btn-primary,
+.elementor .am-btn-light.e-button-base,
+.elementor .am-btn-outline.e-button-base,
+.elementor .am-btn-primary.e-button-base {
+  border-radius: var(--am-radius-sm) !important;
+  font-weight: 600 !important;
+  font-size: 1rem !important;
+  padding: 14px 24px !important;
+  text-decoration: none !important;
+  width: auto !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 4px !important;
+  line-height: 1.2 !important;
+}
+
+/* Light (white) button — e.g. Explore the range, Get a quote */
+.elementor .am-btn-light.e-button-base {
+  background: #ffffff !important;
+  color: var(--am-navy) !important;
+  border: 1px solid transparent !important;
+}
+.elementor .am-btn-light.e-button-base:hover {
+  background: var(--am-surface-blue) !important;
+  color: var(--am-navy) !important;
+}
+
+/* Primary (solid blue) button — e.g. Get a quote on light contexts */
+.elementor .am-btn-primary.e-button-base {
+  background: #ffffff !important;
+  color: var(--am-navy) !important;
+  border: 1px solid transparent !important;
+}
+.elementor .am-btn-primary.e-button-base:hover {
+  background: var(--am-surface-blue) !important;
+  color: var(--am-navy) !important;
+}
+
+/* Outline button on dark backgrounds (hero, team, cta) — white border */
+.elementor .am-hero .am-btn-outline.e-button-base,
+.elementor .am-section-dark .am-btn-outline.e-button-base,
+.elementor .am-cta-band .am-btn-outline.e-button-base {
+  background: transparent !important;
+  color: #fff !important;
+  border: 1px solid rgba(255,255,255,0.4) !important;
+}
+.elementor .am-hero .am-btn-outline.e-button-base:hover,
+.elementor .am-section-dark .am-btn-outline.e-button-base:hover,
+.elementor .am-cta-band .am-btn-outline.e-button-base:hover {
+  border-color: #fff !important;
+  background: rgba(255,255,255,0.06) !important;
+}
+
+/* Outline button on LIGHT sections renders as blue link-arrow
+   — e.g. View all products, Discover Macma technology.
+   Exclude dark sections (team root carries both am-section and
+   am-section-dark) so the white-outline rule above wins there. */
+.elementor .am-section:not(.am-section-dark) .am-btn-outline.e-button-base,
+.elementor .am-section-alt:not(.am-section-dark) .am-btn-outline.e-button-base {
+  background: transparent !important;
+  color: var(--am-blue) !important;
+  border: none !important;
+  padding: 0 !important;
+  font-size: 0.9375rem !important;
+}
+.elementor .am-section:not(.am-section-dark) .am-btn-outline.e-button-base:hover,
+.elementor .am-section-alt:not(.am-section-dark) .am-btn-outline.e-button-base:hover {
+  color: var(--am-blue-hover) !important;
+}
+
+/* Checklist in hero: flex row of p items with cyan ticks */
+.elementor .am-check-list {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+  margin-top: 0.75rem;
+  list-style: none;
+  padding: 0;
+  width: 100%;
+}
+.elementor .am-check-list .e-paragraph-base {
+  position: relative;
+  padding-left: 1.5em;
+  color: var(--am-on-dark);
+  font-size: 0.9375rem;
+  margin: 0;
+  white-space: nowrap;
+}
+.elementor .am-check-list .e-paragraph-base::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.15em;
+  width: 18px;
+  height: 18px;
+  background-color: var(--am-cyan);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  display: inline-block;
+}
+
+/* Right column */
+.elementor .am-hero-col-right {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  gap: 24px;
+  min-width: 0;
+  padding: 0;
+}
+
+/* Hero media box: dark gradient box */
+.elementor .am-hero-col-right .elementor-widget-e-image,
+.elementor .am-hero-col-right > .elementor-widget-image {
+  position: relative;
+  border: 1px solid var(--am-on-dark-line);
+  border-radius: var(--am-radius-lg);
+  background: linear-gradient(180deg, var(--am-navy-3) 0%, var(--am-navy-2) 100%);
+  padding: 40px 20px 64px;
+  overflow: hidden;
+  margin: 0;
+}
+@media (min-width: 640px) {
+  .elementor .am-hero-col-right .elementor-widget-e-image,
+  .elementor .am-hero-col-right > .elementor-widget-image {
+    padding: 64px 40px 80px;
+  }
+}
+
+.elementor .am-hero-col-right img {
+  width: 100% !important;
+  height: auto !important;
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+/* Hero chip: white floating card */
+.elementor .am-hero-chip {
+  display: inline-flex !important;
+  flex-direction: row !important;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: var(--am-radius);
+  background: #fff;
+  color: var(--am-ink);
+  box-shadow: var(--am-shadow);
+  width: fit-content;
+  max-width: 100%;
+}
+.elementor .am-hero-chip .e-heading-base {
+  font-family: 'Manrope', sans-serif !important;
+  font-size: 1.5rem !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  color: var(--am-ink) !important;
+  margin: 0 !important;
+}
+.elementor .am-hero-chip .e-paragraph-base {
+  font-size: 0.8125rem !important;
+  color: var(--am-muted) !important;
+  line-height: 1.35 !important;
+  margin: 0 !important;
+}
+
+/* ============================================================
+   SECTION 2 — VALUE STRIP
+   Nodes: 253aad5b (am-value-strip), 2f774293 (am-value-inner),
+          842168b / 634a0c5f / 4f062744 / 29af5b97 (g-e17d9af tiles)
+   ============================================================ */
+
+.elementor .am-value-strip {
+  background: #fff;
+  border-bottom: 1px solid var(--am-line);
+  display: block;
+}
+
+.elementor .am-value-inner {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  max-width: 1264px;
+  margin-inline: auto;
+  padding: 0 32px;
+  box-sizing: border-box;
+  width: 100%;
+  flex-direction: unset;
+}
+@media (min-width: 960px) {
+  .elementor .am-value-inner {
+    grid-template-columns: repeat(4, minmax(0,1fr));
+  }
+}
+
+/* Each value tile */
+.elementor .am-value-inner .am-icon-box {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 20px 12px 20px 0;
+  box-sizing: border-box;
+}
+@media (min-width: 960px) {
+  .elementor .am-value-inner .am-icon-box {
+    padding: 28px 24px;
+    border-left: 1px solid var(--am-line);
+  }
+  .elementor .am-value-inner .am-icon-box:first-child {
+    padding-left: 0;
+    border-left: 0;
+  }
+}
+
+.elementor .am-value-inner .am-icon-box .e-heading-base {
+  font-family: 'Manrope', sans-serif !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0 !important;
+  color: var(--am-ink) !important;
+  margin: 0 0 2px !important;
+  line-height: 1.3 !important;
+}
+
+.elementor .am-value-inner .am-icon-box .e-paragraph-base {
+  font-size: 0.875rem !important;
+  color: var(--am-muted) !important;
+  margin: 0 !important;
+  line-height: 1.4 !important;
+}
+
+/* ============================================================
+   SHARED SECTION LAYOUT
+   ============================================================ */
+
+.elementor .am-section,
+.elementor .am-section-alt,
+.elementor .am-section-dark {
+  padding-block: var(--am-section-y);
+  display: block;
+}
+
+.elementor .am-section-alt  { background: var(--am-surface); }
+.elementor .am-section-dark { background: var(--am-navy); color: var(--am-on-dark); }
+
+/* Shared inner container centering (default: column stack) */
+.elementor .am-section > .am-container,
+.elementor .am-section-alt > .am-container,
+.elementor .am-section-dark > .am-container {
+  max-width: 1264px;
+  margin-inline: auto;
+  padding: 0 32px;
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+@media (max-width: 767px) {
+  .elementor .am-section > .am-container,
+  .elementor .am-section-alt > .am-container,
+  .elementor .am-section-dark > .am-container,
+  .elementor .am-hero .am-container,
+  .elementor .am-value-inner,
+  .elementor .am-cta-section .am-container {
+    padding-inline: 16px;
+  }
+}
+
+/* Shared eyebrow style (real class: am-eyebrow) */
+.elementor .am-section .am-eyebrow.e-heading-base,
+.elementor .am-section-alt .am-eyebrow.e-heading-base,
+.elementor .am-section-dark .am-eyebrow.e-heading-base,
+.elementor .am-cta-band .am-eyebrow.e-heading-base,
+.elementor .am-hero .am-eyebrow.e-heading-base {
+  font-size: 0.8125rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  color: var(--am-blue) !important;
+  font-family: 'Manrope', sans-serif !important;
+  margin-bottom: 12px !important;
+}
+.elementor .am-section-dark .am-eyebrow.e-heading-base,
+.elementor .am-cta-band .am-eyebrow.e-heading-base,
+.elementor .am-hero .am-eyebrow.e-heading-base {
+  color: var(--am-cyan) !important;
+}
+
+/* Dark section: typography */
+.elementor .am-section-dark h2,
+.elementor .am-section-dark h3,
+.elementor .am-section-dark .e-heading-base { color: #fff; }
+.elementor .am-section-dark p,
+.elementor .am-section-dark .e-paragraph-base { color: var(--am-on-dark-muted); }
+
+/* Section button styling is handled by the am-btn-* variant rules above. */
+
+/* ============================================================
+   SECTION 3 — PRODUCT RANGE
+   Node: 6aef0737 (am-section), 74bfd0df (am-container)
+   ============================================================ */
+
+/* heading rows: no bottom margin overlap */
+.elementor .am-section > .am-container > .elementor-widget-e-heading {
+  margin-bottom: 0;
+}
+
+/* spacing between heading group and product grid */
+.elementor .am-section > .am-container .woocommerce {
+  margin-top: 40px;
+  width: 100%;
+}
+
+/* 'View all products' button right-aligned */
+.elementor .am-section > .am-container > .elementor-widget-e-button:last-child {
+  align-self: flex-end;
+  margin-top: -8px;
+}
+
+/* WooCommerce product grid override (homepage only) */
+.elementor .am-section .woocommerce ul.products,
+.elementor .am-section .woocommerce-page ul.products {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0,1fr)) !important;
+  gap: 24px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+  float: none !important;
+  clear: both !important;
+}
+@media (max-width: 1024px) {
+  .elementor .am-section .woocommerce ul.products { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
+}
+@media (max-width: 640px) {
+  .elementor .am-section .woocommerce ul.products { grid-template-columns: 1fr !important; }
+}
+
+.elementor .am-section .woocommerce ul.products li.product {
+  margin: 0 !important;
+  width: 100% !important;
+  float: none !important;
+  box-sizing: border-box;
+  border: 1px solid var(--am-line);
+  border-radius: var(--am-radius);
+  background: #fff;
+  overflow: hidden;
+  display: flex !important;
+  flex-direction: column;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.elementor .am-section .woocommerce ul.products li.product:hover {
+  border-color: var(--am-line-strong);
+  box-shadow: var(--am-shadow);
+}
+
+.elementor .am-section .woocommerce ul.products li.product a img {
+  width: 100% !important;
+  height: 200px !important;
+  object-fit: cover !important;
+  display: block !important;
+  border-radius: 0 !important;
+}
+
+.elementor .am-section .woocommerce ul.products li.product .woocommerce-loop-product__title {
+  padding: 16px 20px 4px !important;
+  font-family: 'Manrope', sans-serif !important;
+  font-size: 1.25rem !important;
+  font-weight: 700 !important;
+  color: var(--am-ink) !important;
+  margin: 0 !important;
+}
+
+.elementor .am-section .woocommerce ul.products li.product .price {
+  padding: 0 20px 8px !important;
+  color: var(--am-blue) !important;
+  font-weight: 600 !important;
+  font-size: 0.9375rem !important;
+}
+
+.elementor .am-section .woocommerce ul.products li.product .button,
+.elementor .am-section .woocommerce ul.products li.product a.button {
+  display: block !important;
+  margin: 8px 20px 20px !important;
+  padding: 10px 16px !important;
+  background: var(--am-blue) !important;
+  color: #fff !important;
+  border-radius: var(--am-radius-sm) !important;
+  text-align: center !important;
+  font-weight: 600 !important;
+  font-size: 0.9375rem !important;
+  text-decoration: none !important;
+  border: none !important;
+  cursor: pointer;
+  width: auto !important;
+  float: none !important;
+}
+.elementor .am-section .woocommerce ul.products li.product a.button:hover {
+  background: var(--am-blue-hover) !important;
+  color: #fff !important;
+}
+
+/* 'View all products' link style — light sections only.
+   Exclude am-cta-section (dark CTA band) and am-section-dark
+   (One Team) so their white-outline buttons are not flattened. */
+.elementor .am-section:not(.am-cta-section):not(.am-section-dark) > .am-container .am-btn-outline.e-button-base {
+  background: transparent !important;
+  color: var(--am-blue) !important;
+  border: none !important;
+  font-weight: 600 !important;
+  padding: 0 !important;
+  font-size: 0.9375rem !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  width: auto !important;
+}
+
+/* ============================================================
+   SECTION 4 — WHY MACMA
+   Nodes: 13bcab5 (am-section-alt am-why-macma),
+          e0ecb10 (am-container), 562cfa43 (am-why-left),
+          42f92117 (am-why-right)
+   ============================================================ */
+
+/* Why Macma container: 5fr/7fr two-column split (override column stack) */
+.elementor .am-section-alt.am-why-macma > .am-container,
+.elementor .am-why-macma > .am-container {
+  display: grid !important;
+  grid-template-columns: minmax(0,5fr) minmax(0,7fr);
+  gap: 64px;
+  align-items: start;
+  flex-direction: unset;
+}
+@media (max-width: 960px) {
+  .elementor .am-section-alt.am-why-macma > .am-container,
+  .elementor .am-why-macma > .am-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+/* Left column */
+.elementor .am-why-left {
+  display: flex !important;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0;
+}
+.elementor .am-why-left .e-paragraph-base {
+  font-size: 1.0625rem !important;
+  color: var(--am-muted) !important;
+  line-height: 1.65 !important;
+}
+.elementor .am-why-left .am-btn-outline.e-button-base,
+.elementor .am-why-left .am-btn-outline {
+  background: transparent !important;
+  color: var(--am-blue) !important;
+  border: none !important;
+  font-weight: 600 !important;
+  padding: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  text-decoration: none;
+  width: auto !important;
+}
+
+/* Right column: 2-col feature grid */
+.elementor .am-why-right {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 28px 32px;
+  align-content: start;
+  padding: 0;
+  flex-direction: unset;
+}
+@media (max-width: 640px) {
+  .elementor .am-why-right { grid-template-columns: 1fr !important; }
+}
+.elementor .am-why-right .e-paragraph-base {
+  font-size: 0.9375rem !important;
+  color: var(--am-ink-2) !important;
+  font-weight: 500 !important;
+  margin: 0 !important;
+  line-height: 1.5 !important;
+}
+
+/* ============================================================
+   SECTION 5 — ONE TEAM / PROCESS
+   Nodes: 5214bccf (am-section-dark am-team), 40f22062 (am-container),
+          1de57a8b (am-steps), 7e22039b/300747f4/243ccf84/3b0d1fa4 (am-step)
+   ============================================================ */
+
+/* Team container: column stack with gap */
+.elementor .am-team > .am-container {
+  display: flex !important;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.elementor .am-team > .am-container > .elementor-widget-e-heading,
+.elementor .am-team > .am-container > .elementor-widget-e-paragraph {
+  max-width: 640px;
+}
+
+/* Steps grid */
+.elementor .am-steps {
+  display: grid !important;
+  gap: 16px;
+  counter-reset: step;
+  grid-template-columns: 1fr;
+  padding: 0;
+  flex-direction: unset;
+}
+@media (min-width: 640px) {
+  .elementor .am-steps { grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
+@media (min-width: 1024px) {
+  .elementor .am-steps { grid-template-columns: repeat(4, minmax(0,1fr)); gap: 20px; }
+}
+
+/* Step card */
+.elementor .am-step {
+  position: relative;
+  padding: 24px !important;
+  border: 1px solid var(--am-on-dark-line) !important;
+  border-radius: var(--am-radius) !important;
+  background: rgba(255,255,255,0.03) !important;
+  counter-increment: step;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px;
+  box-sizing: border-box;
+}
+
+/* Step counter number (own row, above title — no overprint) */
+.elementor .am-step::before {
+  content: counter(step, decimal-leading-zero);
+  display: block;
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--am-cyan);
+  margin-bottom: 14px;
+  order: -1;
+}
+
+.elementor .am-step .e-heading-base {
+  font-size: 1.125rem !important;
+  font-weight: 700 !important;
+  color: #fff !important;
+  margin: 0 !important;
+  letter-spacing: -0.01em !important;
+}
+
+.elementor .am-step .e-paragraph-base {
+  color: var(--am-on-dark-muted) !important;
+  font-size: 0.9375rem !important;
+  margin: 0 !important;
+  line-height: 1.6 !important;
+}
+
+/* Our services button (direct anchor child of team container) */
+.elementor .am-team > .am-container > a.am-btn-outline.e-button-base,
+.elementor .am-section-dark.am-team a.am-btn-outline.e-button-base {
+  background: transparent !important;
+  color: #fff !important;
+  border: 1px solid rgba(255,255,255,0.4) !important;
+  border-radius: var(--am-radius-sm) !important;
+  font-weight: 600 !important;
+  padding: 10px 20px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  text-decoration: none;
+  align-self: flex-start;
+  width: auto !important;
+}
+
+/* ============================================================
+   SECTION 6 — CTA BAND
+   Nodes: 4c7e54f9 (am-cta-section), 16bdb7cf (am-container),
+          11e3f420 (am-cta-band)
+   ============================================================ */
+
+.elementor .am-cta-section {
+  padding-block: var(--am-section-y);
+  background: #fff;
+  display: block;
+}
+
+.elementor .am-cta-section > .am-container,
+.elementor .am-cta-section .am-container {
+  max-width: 1264px;
+  margin-inline: auto;
+  padding: 0 32px;
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* CTA band: rounded dark box, grid text|buttons */
+.elementor .am-cta-band {
+  display: grid !important;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  align-items: center;
+  padding: 32px 24px !important;
+  border-radius: var(--am-radius-lg) !important;
+  background: var(--am-navy) !important;
+  color: var(--am-on-dark);
+  flex-direction: unset;
+}
+@media (min-width: 768px) {
+  .elementor .am-cta-band { padding: 48px !important; }
+}
+@media (min-width: 960px) {
+  .elementor .am-cta-band {
+    grid-template-columns: minmax(0,1fr) auto !important;
+    gap: 48px !important;
+    padding: 56px !important;
+  }
+}
+
+.elementor .am-cta-band .am-eyebrow.e-heading-base {
+  color: var(--am-cyan) !important;
+  font-size: 0.8125rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  font-family: 'Manrope', sans-serif !important;
+  margin-bottom: 12px !important;
+}
+
+.elementor .am-cta-band .e-heading-base { color: #fff !important; }
+
+.elementor .am-cta-band .e-paragraph-base {
+  color: var(--am-on-dark-muted) !important;
+  max-width: 56ch;
+  margin: 0 !important;
+}
+
+/* CTA buttons: side-by-side (button row is last flexbox child) */
+.elementor .am-cta-band > .elementor-widget-e-flexbox:last-child,
+.elementor .am-cta-band > .elementor-element:last-child {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+/* Get a quote: light button g-6b86c99 */
+.elementor .am-cta-band .am-btn-primary.e-button-base,
+.elementor .am-cta-band .am-btn-primary {
+  background: #fff !important;
+  color: var(--am-navy) !important;
+  border: 1px solid transparent !important;
+  border-radius: var(--am-radius-sm) !important;
+  font-weight: 600 !important;
+  padding: 14px 24px !important;
+  font-size: 1rem !important;
+  text-decoration: none;
+  min-height: 52px;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center;
+  width: auto !important;
+}
+.elementor .am-cta-band .am-btn-primary.e-button-base:hover {
+  background: var(--am-surface-blue) !important;
+}
+
+/* Keep me updated: outline button g-0e3661c */
+.elementor .am-cta-band .am-btn-outline.e-button-base,
+.elementor .am-cta-band .am-btn-outline {
+  background: transparent !important;
+  color: #fff !important;
+  border: 1px solid rgba(255,255,255,0.4) !important;
+  border-radius: var(--am-radius-sm) !important;
+  font-weight: 600 !important;
+  padding: 14px 24px !important;
+  font-size: 1rem !important;
+  text-decoration: none;
+  min-height: 52px;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center;
+  width: auto !important;
+}
+.elementor .am-cta-band .am-btn-outline.e-button-base:hover {
+  border-color: #fff !important;
+  background: rgba(255,255,255,0.06) !important;
+}
+
+/* ============================================================
+   RESPONSIVE: Mobile-specific overrides
+   ============================================================ */
+
+@media (max-width: 767px) {
+  .elementor .am-section,
+  .elementor .am-section-alt,
+  .elementor .am-section-dark,
+  .elementor .am-hero,
+  .elementor .am-cta-section {
+    padding-block: 48px;
+  }
+  .elementor .am-hero .am-container {
+    padding-block: 48px 40px;
+  }
+  .elementor .am-check-list {
+    flex-direction: column !important;
+    gap: 8px;
+  }
+  .elementor .am-why-right {
+    grid-template-columns: 1fr !important;
+  }
+  .elementor .am-cta-band {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ============================================================
+   WOOCOMMERCE — global shop / product page safety
+   All WooCommerce overrides above are scoped to .am-section
+   (homepage only), so shop / cart / checkout are untouched.
+   ============================================================ */
+
+/* ============================================================
+   TARGETED FIXES
+   ============================================================ */
+
+/* Fix: hero container MUST be grid to split into two columns.
+   Override any Elementor base flex defaults absolutely. */
+.elementor .am-hero .am-container {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 40px !important;
+  padding: 56px 32px 64px !important;
+  max-width: 1264px !important;
+  margin-inline: auto !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  flex-direction: unset !important;
+  flex-wrap: unset !important;
+  align-content: unset !important;
+  justify-content: unset !important;
+  align-items: center !important;
+}
+@media (min-width: 960px) {
+  .elementor .am-hero .am-container {
+    grid-template-columns: minmax(0,1fr) minmax(0,1fr) !important;
+    gap: 56px !important;
+    padding: 88px 32px 96px !important;
+  }
+}
+
+/* Reset hero column flex shorthand (Elementor sets flex:0 1 60%/40%) */
+.elementor .am-hero-col-left {
+  flex: unset !important;
+  min-width: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+.elementor .am-hero-col-right {
+  flex: unset !important;
+  min-width: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 24px !important;
+  padding: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* Hero media box: dark gradient on image widget wrapper.
+   The image is inside .elementor-widget-e-image (atomic) or
+   .elementor-widget-image (legacy widget). Target both. */
+.elementor .am-hero-col-right .elementor-widget-e-image,
+.elementor .am-hero-col-right .elementor-widget-image,
+.elementor .am-hero-col-right > .elementor-element:not(.am-hero-chip) {
+  position: relative !important;
+  border: 1px solid rgba(255,255,255,0.14) !important;
+  border-radius: 16px !important;
+  background: linear-gradient(180deg, #1A3D6C 0%, #12305A 100%) !important;
+  padding: 40px 20px 64px !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
+}
+@media (min-width: 640px) {
+  .elementor .am-hero-col-right .elementor-widget-e-image,
+  .elementor .am-hero-col-right .elementor-widget-image,
+  .elementor .am-hero-col-right > .elementor-element:not(.am-hero-chip) {
+    padding: 64px 40px 80px !important;
+  }
+}
+
+/* Hero chip must NOT inherit the dark box styles */
+.elementor .am-hero-col-right .am-hero-chip.am-hero-chip {
+  border: none !important;
+  border-radius: 10px !important;
+  background: #fff !important;
+  padding: 10px 14px !important;
+  overflow: visible !important;
+  width: fit-content !important;
+  display: inline-flex !important;
+}
+
+/* Hero SVG image */
+.elementor .am-hero-col-right img {
+  width: 100% !important;
+  height: auto !important;
+  max-width: none !important;
+  display: block !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Product grid — 3 column override (works for shortcode widget too) */
+.elementor .am-section .woocommerce ul.products {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0,1fr)) !important;
+  gap: 24px !important;
+  float: none !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+  clear: both !important;
+}
+@media (max-width: 1024px) {
+  .elementor .am-section .woocommerce ul.products {
+    grid-template-columns: repeat(2, minmax(0,1fr)) !important;
+  }
+}
+@media (max-width: 640px) {
+  .elementor .am-section .woocommerce ul.products {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Step counter — force column layout with counter on its own line */
+.elementor .am-step {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 4px !important;
+  padding: 24px !important;
+  counter-increment: step !important;
+}
+.elementor .am-steps {
+  counter-reset: step !important;
+  display: grid !important;
+}
+.elementor .am-step::before {
+  content: counter(step, decimal-leading-zero) !important;
+  display: block !important;
+  font-family: 'Manrope', sans-serif !important;
+  font-size: 0.875rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.08em !important;
+  color: #46CBF2 !important;
+  margin-bottom: 14px !important;
+  width: 100% !important;
+  position: static !important;
+  top: unset !important;
+  left: unset !important;
+}
+
+/* CTA band: grid layout */
+.elementor .am-cta-band {
+  display: grid !important;
+  flex-direction: unset !important;
+}
+@media (min-width: 960px) {
+  .elementor .am-cta-band {
+    grid-template-columns: minmax(0,1fr) auto !important;
+    align-items: center !important;
+    gap: 48px !important;
+  }
+}
+
+/* CTA buttons row: flex row */
+.elementor .am-cta-band > .elementor-element:last-child {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  gap: 12px !important;
+}
+
+/* ============================================================
+   SPECIFICITY FIX: am-btn-outline on dark backgrounds
+   Elementor e-button-base e-default-a resets border-width/style
+   to 0/none. We need to win with high specificity.
+   ============================================================ */
+
+.elementor .am-cta-section .am-container .am-cta-band a.am-btn-outline.e-button-base {
+  background: transparent !important;
+  color: #ffffff !important;
+  border-width: 1px !important;
+  border-style: solid !important;
+  border-color: rgba(255,255,255,0.5) !important;
+  padding: 14px 24px !important;
+  border-radius: 6px !important;
+  font-weight: 600 !important;
+  font-size: 1rem !important;
+  min-height: 52px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-decoration: none !important;
+  line-height: 1.2 !important;
+}
+.elementor .am-cta-section .am-container .am-cta-band a.am-btn-outline.e-button-base:hover {
+  border-color: #ffffff !important;
+  background: rgba(255,255,255,0.06) !important;
+  color: #ffffff !important;
+}
+
+.elementor .am-hero a.am-btn-outline.e-button-base {
+  background: transparent !important;
+  color: #ffffff !important;
+  border-width: 1px !important;
+  border-style: solid !important;
+  border-color: rgba(255,255,255,0.4) !important;
+  padding: 14px 24px !important;
+  border-radius: 6px !important;
+  font-weight: 600 !important;
+  font-size: 1rem !important;
+  min-height: 52px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-decoration: none !important;
+  line-height: 1.2 !important;
+}
+.elementor .am-hero a.am-btn-outline.e-button-base:hover {
+  border-color: #ffffff !important;
+  background: rgba(255,255,255,0.08) !important;
+}
+
+.elementor .am-section-dark a.am-btn-outline.e-button-base {
+  background: transparent !important;
+  color: #ffffff !important;
+  border-width: 1px !important;
+  border-style: solid !important;
+  border-color: rgba(255,255,255,0.4) !important;
+  padding: 10px 20px !important;
+  border-radius: 6px !important;
+  font-weight: 600 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  text-decoration: none !important;
+}
+
+/* Light-section link-style buttons must NOT match the CTA band
+   (am-cta-section) or hero; those are dark-outline contexts.
+   Exclude am-cta-section so the CTA band white-outline rule wins. */
+.elementor .am-section:not(.am-section-dark):not(.am-cta-section) a.am-btn-outline.e-button-base,
+.elementor .am-section-alt:not(.am-cta-section) a.am-btn-outline.e-button-base {
+  background: transparent !important;
+  color: #0A6CD6 !important;
+  border: none !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  padding: 0 !important;
+  font-weight: 600 !important;
+  font-size: 0.9375rem !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  text-decoration: none !important;
+  min-height: unset !important;
+}
+.elementor .am-section:not(.am-section-dark):not(.am-cta-section) a.am-btn-outline.e-button-base:hover,
+.elementor .am-section-alt:not(.am-cta-section) a.am-btn-outline.e-button-base:hover {
+  color: #0858B0 !important;
+}
+
+/* ============================================================
+   HERO PRECISION FIXES
+   ============================================================ */
+
+/* Eyebrow: single line */
+.elementor .am-hero .am-eyebrow.e-heading-base {
+  white-space: nowrap !important;
+  overflow: visible !important;
+}
+
+/* H1 size in hero: closer to reference */
+.elementor .am-hero h1,
+.elementor .am-hero-col-left .e-heading-base[tag="h1"] {
+  font-size: clamp(2rem, 1.4rem + 2vw, 2.875rem) !important;
+  line-height: 1.1 !important;
+}
+
+/* Hero columns: 5/7 ratio like reference */
+@media (min-width: 960px) {
+  .elementor .am-hero .am-container {
+    grid-template-columns: minmax(0,5fr) minmax(0,7fr) !important;
+    gap: 56px !important;
+  }
+}
+
+/* Checklist: all items on one line */
+.elementor .am-check-list .e-paragraph-base {
+  white-space: nowrap !important;
+}
+
+/* Media box: taller */
+.elementor .am-hero-col-right .elementor-widget-e-image,
+.elementor .am-hero-col-right .elementor-widget-image,
+.elementor .am-hero-col-right > .elementor-element:not(.am-hero-chip) {
+  padding: 64px 40px 96px !important;
+}
+
+/* Right column: no gap between box and chip (chip sits below edge) */
+.elementor .am-hero-col-right {
+  gap: 0 !important;
+  align-items: stretch !important;
+}
+
+/* Chip: right-aligned, appears to float off bottom-right of box */
+.elementor .am-hero-chip.am-hero-chip {
+  align-self: flex-end !important;
+  margin-top: 0 !important;
+  max-width: 280px !important;
+  transform: translateY(-1px);
+}
+
+/* Checklist container: force single row within the 5/12 left column.
+   The three items (Inverter on every model / Expert installation /
+   Local aftercare) need ~628px at 19px/24px-gap but the left column
+   is ~475px. Force nowrap and tighten gap + font so they fit on one
+   line to match the reference. */
+@media (min-width: 960px) {
+  .elementor .am-hero .am-check-list.am-check-list {
+    flex-wrap: nowrap !important;
+    gap: 8px 14px !important;
+  }
+  .elementor .am-hero .am-check-list .e-paragraph-base {
+    font-size: 0.875rem !important;
+    white-space: nowrap !important;
+    flex: 0 0 auto !important;
+  }
+}
+
+/* ============================================================
+   HERO FIX PASS — authoritative overrides (last-wins)
+   Root causes confirmed via DOM measurement:
+   - Fixed header is 117px tall; hero top padding (88px) was less,
+     so the eyebrow rendered UNDER the fixed header. (Issue 1)
+   - The image is a BARE atomic <img> (no .elementor-widget-e-image
+     wrapper exists), so the gradient media-box styles never applied.
+     Style the <img> itself as the media box. (Issue 2)
+   - Chip was a normal flex child below the image. Position it
+     absolutely to overlap the box's bottom-right corner. (Issue 3)
+   - align-items:center + 96px bottom padding left a large empty
+     navy band below the checklist. (Issue 4)
+   ============================================================ */
+
+/* Issue 1 + 4: clear the fixed header and trim bottom padding.
+   Top align the two columns so left content starts at the same
+   line and no dead space is left below the shorter column. */
+.elementor .am-hero .am-container {
+  align-items: start !important;
+  padding: 120px 32px 72px !important;
+}
+@media (min-width: 960px) {
+  .elementor .am-hero .am-container {
+    align-items: start !important;
+    padding: 140px 32px 80px !important;
+  }
+}
+
+/* Issue 3: right column is the positioning context for the chip. */
+.elementor .am-hero-col-right {
+  position: relative !important;
+  gap: 0 !important;
+  align-items: stretch !important;
+}
+
+/* Issue 2: turn the bare hero <img> into the dark gradient media box.
+   The SVG artwork sits inside its own padded, bordered, gradient box. */
+.elementor .am-hero-col-right img {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  max-width: none !important;
+  box-sizing: border-box !important;
+  position: relative !important;
+  z-index: 1 !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border-radius: 16px !important;
+  background: linear-gradient(180deg, #1A3D6C 0%, #12305A 100%) !important;
+  padding: 48px 40px 56px !important;
+}
+@media (min-width: 640px) {
+  .elementor .am-hero-col-right img {
+    padding: 64px 48px 72px !important;
+  }
+}
+
+/* Issue 3: chip overlaps the bottom-right corner of the media box. */
+.elementor .am-hero-col-right .am-hero-chip.am-hero-chip {
+  position: absolute !important;
+  bottom: 16px !important;
+  right: 16px !important;
+  top: auto !important;
+  left: auto !important;
+  z-index: 10 !important;
+  align-self: auto !important;
+  margin: 0 !important;
+  transform: none !important;
+  width: auto !important;
+  max-width: 260px !important;
+}
+
+/* ============================================================
+   HERO IMAGE + CHIP + SPACING FIXES (v2 — overlap + spacing)
+   Appended last so equal-specificity rules win the cascade over
+   the earlier hero block above. Keeps the gradient media box and
+   makes the chip overlap its bottom-right corner, and trims the
+   excess navy band below the checklist.
+   ============================================================ */
+
+/* Target the bare img.e-image-base (Elementor v4 atomic image output) */
+.elementor .am-hero-col-right img.e-image-base,
+.elementor .am-hero-col-right .e-image-base {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(255,255,255,0.14) !important;
+  background: linear-gradient(180deg, #1A3D6C 0%, #12305A 100%) !important;
+  padding: 64px 40px 80px !important;
+  box-sizing: border-box !important;
+  position: relative !important;
+  z-index: 1 !important;
+  object-fit: contain !important;
+  object-position: center top !important;
+}
+
+/* Right column as positioning context */
+.elementor .am-hero-col-right {
+  position: relative !important;
+  gap: 0 !important;
+}
+
+/* Chip: overlapping bottom-right corner of image box */
+.elementor .am-hero-chip.am-hero-chip {
+  position: absolute !important;
+  bottom: 16px !important;
+  right: 16px !important;
+  z-index: 10 !important;
+  width: auto !important;
+  max-width: 280px !important;
+  background: #ffffff !important;
+  border-radius: 10px !important;
+  padding: 10px 14px !important;
+  border: none !important;
+  overflow: visible !important;
+  display: inline-flex !important;
+  gap: 12px !important;
+  align-items: center !important;
+  box-shadow: 0 12px 32px -16px rgba(15,27,42,0.35) !important;
+  flex-direction: row !important;
+}
+
+/* Hero container: reduce bottom padding so checklist sits closer
+   to the value strip */
+@media (min-width: 960px) {
+  .elementor .am-hero .am-container {
+    padding: 140px 32px 80px !important;
+    align-items: start !important;
+  }
+}
+@media (max-width: 959px) {
+  .elementor .am-hero .am-container {
+    padding: 120px 16px 56px !important;
+    align-items: start !important;
+  }
+}
+
+/* Reduce gap between buttons and checklist */
+.elementor .am-check-list {
+  margin-top: 1.25rem !important;
+}
+
+/* ============================================================
+   HERO BOTTOM SPACING FIX
+   Remove excess empty space below checklist.
+   The container's large bottom padding (80px desktop) left a
+   ~90px navy gap between the checklist and the value strip.
+   Height is content-driven (no min-height on .am-hero), so we
+   only reduce the container's bottom padding. Rule is appended
+   last and uses !important to win over the earlier
+   `padding: 140px 32px 80px !important` hero container rule.
+   ============================================================ */
+
+/* Hero section: ensure height follows content, not a fixed value */
+.elementor .am-hero,
+.elementor .am-hero.e-con {
+  min-height: unset !important;
+  height: auto !important;
+}
+
+/* Container bottom padding: reduce to bring value strip closer.
+   Keep existing top padding (140 / 120) and horizontal padding. */
+@media (min-width: 960px) {
+  .elementor .am-hero .am-container {
+    padding: 140px 32px 64px !important;
+  }
+}
+@media (max-width: 959px) {
+  .elementor .am-hero .am-container {
+    padding: 120px 16px 48px !important;
+  }
+}
+
+/* ============================================================
+   CUSTOM PRODUCT SHOWCASE CARDS (am-product-grid)
+   Replaces WooCommerce shortcode output in the range section
+   ============================================================ */
+
+.am-product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  width: 100%;
+  margin-top: 40px;
+  list-style: none;
+  padding: 0;
+}
+@media (max-width: 1024px) {
+  .am-product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .am-product-grid { grid-template-columns: 1fr; }
+}
+
+.am-product-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #DFE5EC;
+  border-radius: 10px;
+  background: #ffffff;
+  overflow: hidden;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+}
+.am-product-card:hover {
+  border-color: #C5D0DB;
+  box-shadow: 0 12px 32px -16px rgba(15,27,42,0.24);
+}
+
+/* Image area */
+.am-product-card-media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background: #F4F7FA;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.am-product-card-media img {
+  position: absolute;
+  inset: 28px;
+  width: calc(100% - 56px) !important;
+  height: calc(100% - 56px) !important;
+  object-fit: contain;
+  display: block;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+}
+
+/* Badges */
+.am-badges {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.am-badge {
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: #0C2340;
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  font-family: "Inter", sans-serif;
+}
+.am-badge-light {
+  background: #ffffff;
+  color: #0F1B2A;
+  border: 1px solid #DFE5EC;
+}
+
+/* Card body */
+.am-product-card-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px;
+}
+
+.am-product-card-type {
+  margin: 0;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #546577;
+  font-family: "Inter", sans-serif;
+}
+
+.am-product-card-title {
+  margin: 0;
+  font-family: "Manrope", sans-serif;
+  font-size: 1.375rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+.am-product-card-title a {
+  color: #0F1B2A;
+  text-decoration: none;
+}
+.am-product-card-title a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+.am-product-card-title a:focus-visible { outline: none; }
+.am-product-card:focus-within { border-color: #0A6CD6; }
+
+.am-product-card-text {
+  margin: 0;
+  color: #546577;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+}
+
+/* BTU caps row */
+.am-card-caps {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+.am-caps-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #546577;
+  font-family: "Inter", sans-serif;
+}
+.am-cap-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.am-cap-list li {
+  padding: 2px 8px;
+  border: 1px solid #DFE5EC;
+  border-radius: 6px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #2B3B4E;
+  font-family: "Inter", sans-serif;
+}
+
+/* View details link */
+.am-link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 600;
+  color: #0A6CD6;
+  text-decoration: none;
+  font-size: 0.9375rem;
+  margin-top: auto;
+  padding-top: 12px;
+  position: relative;
+  z-index: 1;
+}
+.am-link-arrow:hover { color: #0858B0; }
+
+/* ============================================================
+   NATIVE ELEMENTOR PRODUCT CARDS (am-product-grid-native)
+   Replaces the raw HTML widget. Each piece is a native atomic
+   widget, editable through the Elementor visual editor.
+
+   NOTE: Elementor atomic widgets place the am-* global class
+   directly on the content element (img / p / h3 / a), alongside
+   base classes (e-image-base, e-heading-base, e-paragraph-base,
+   e-button-base). Selectors below match the am-* class on the
+   element itself, not on a descendant.
+   ============================================================ */
+
+/* Grid: 3-col desktop, 2-col tablet, 1-col mobile */
+.elementor .am-product-grid-native {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  width: 100%;
+  margin-top: 40px;
+  flex-direction: unset !important;
+  flex-wrap: unset !important;
+  padding: 0 !important;
+}
+@media (max-width: 1024px) {
+  .elementor .am-product-grid-native {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+@media (max-width: 640px) {
+  .elementor .am-product-grid-native {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Card container */
+.elementor .am-product-card {
+  position: relative;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  border: 1px solid #DFE5EC;
+  border-radius: 10px;
+  background: #ffffff;
+  overflow: hidden;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  padding: 0 0 20px !important;
+  gap: 0 !important;
+}
+.elementor .am-product-card:hover {
+  border-color: #C5D0DB;
+  box-shadow: 0 12px 32px -16px rgba(15,27,42,0.24);
+}
+
+/* Image: surface-blue background, contained SVG, inset */
+.elementor .am-product-card-img {
+  background: #F4F7FA !important;
+  aspect-ratio: 16 / 10;
+  object-fit: contain !important;
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  max-width: 100% !important;
+  border-radius: 0 !important;
+  padding: 28px !important;
+  margin: 0 0 4px !important;
+  box-sizing: border-box !important;
+}
+
+/* Shared horizontal padding for card body text elements */
+.elementor .am-product-card-badge,
+.elementor .am-product-card-type,
+.elementor .am-product-card-title,
+.elementor .am-product-card-text,
+.elementor .am-product-card-btu,
+.elementor .am-btn-link-arrow {
+  margin-left: 20px !important;
+  margin-right: 20px !important;
+}
+
+/* Badge */
+.elementor p.am-product-card-badge {
+  display: inline-block !important;
+  align-self: flex-start !important;
+  background: #0C2340 !important;
+  color: #ffffff !important;
+  border-radius: 999px !important;
+  padding: 3px 9px !important;
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em !important;
+  font-family: "Inter", sans-serif !important;
+  margin-top: 12px !important;
+  margin-bottom: 0 !important;
+  line-height: 1.4 !important;
+  width: auto !important;
+  max-width: fit-content !important;
+}
+
+/* Product type */
+.elementor p.am-product-card-type {
+  font-size: 0.8125rem !important;
+  font-weight: 600 !important;
+  color: #546577 !important;
+  font-family: "Inter", sans-serif !important;
+  letter-spacing: 0 !important;
+  margin-top: 8px !important;
+  margin-bottom: 0 !important;
+  line-height: 1.4 !important;
+}
+
+/* Product title */
+.elementor h3.am-product-card-title {
+  font-family: "Manrope", sans-serif !important;
+  font-size: 1.375rem !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.02em !important;
+  color: #0F1B2A !important;
+  line-height: 1.2 !important;
+  margin-top: 4px !important;
+  margin-bottom: 0 !important;
+}
+
+/* Description */
+.elementor p.am-product-card-text {
+  color: #546577 !important;
+  font-size: 0.9375rem !important;
+  line-height: 1.55 !important;
+  margin-top: 8px !important;
+  margin-bottom: 0 !important;
+}
+
+/* BTU sizes */
+.elementor p.am-product-card-btu {
+  color: #546577 !important;
+  font-size: 0.8125rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.04em !important;
+  margin-top: 12px !important;
+  margin-bottom: 0 !important;
+  font-family: "Inter", sans-serif !important;
+}
+
+/* View details link button: text-link style with arrow, pinned to bottom */
+.elementor a.am-btn-link-arrow {
+  background: transparent !important;
+  background-color: transparent !important;
+  color: #0A6CD6 !important;
+  border: none !important;
+  padding: 0 !important;
+  margin-top: auto !important;
+  padding-top: 14px !important;
+  font-weight: 600 !important;
+  font-size: 0.9375rem !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  width: auto !important;
+  min-height: unset !important;
+  text-decoration: none !important;
+  border-radius: 0 !important;
+  justify-content: flex-start !important;
+  box-shadow: none !important;
+}
+.elementor a.am-btn-link-arrow:hover {
+  color: #0858B0 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* ============================================================
+   HEADER — Air Mech reference design
+   ============================================================ */
+
+/* Announcement bar */
+.elementor .am-announce {
+  background: #0C2340;
+  color: #F2F6FA;
+  font-size: 0.875rem;
+  width: 100%;
+  display: block !important;
+}
+.elementor .am-announce-inner {
+  display: flex !important;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 4px 12px;
+  padding: 9px 32px;
+  max-width: 1264px;
+  margin-inline: auto;
+  width: 100%;
+  box-sizing: border-box;
+  flex-direction: row !important;
+}
+.elementor .am-announce-tag.e-heading-base {
+  padding: 1px 8px !important;
+  border-radius: 999px !important;
+  background: #46CBF2 !important;
+  color: #0C2340 !important;
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  width: auto !important;
+  display: inline-block !important;
+  margin: 0 !important;
+  font-family: "Inter", sans-serif !important;
+}
+.elementor .am-announce-text .e-paragraph-base {
+  color: #B3C3D5 !important;
+  margin: 0 !important;
+  font-size: 0.875rem !important;
+}
+.elementor .am-announce-link.e-button-base {
+  background: transparent !important;
+  color: #ffffff !important;
+  border: none !important;
+  padding: 0 !important;
+  font-weight: 600 !important;
+  font-size: 0.875rem !important;
+  min-height: unset !important;
+  display: inline-flex !important;
+  width: auto !important;
+  border-radius: 0 !important;
+}
+.elementor .am-announce-link.e-button-base:hover {
+  color: #46CBF2 !important;
+}
+@media (max-width: 639px) {
+  .elementor .am-announce-text { display: none !important; }
+}
+
+/* Site header bar */
+.elementor .am-site-header {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 100 !important;
+  background: rgba(255,255,255,0.94) !important;
+  border-bottom: 1px solid #DFE5EC !important;
+  backdrop-filter: saturate(1.4) blur(10px) !important;
+  -webkit-backdrop-filter: saturate(1.4) blur(10px) !important;
+  width: 100% !important;
+  display: block !important;
+}
+
+.elementor .am-header-inner {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  height: 64px !important;
+  max-width: 1264px !important;
+  margin-inline: auto !important;
+  padding-inline: 32px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+}
+@media (min-width: 1024px) {
+  .elementor .am-header-inner { height: 72px !important; }
+}
+
+/* Brand / logo */
+.elementor .am-brand {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  text-decoration: none !important;
+  margin-right: auto !important;
+  flex-shrink: 0;
+  padding: 0 !important;
+}
+.elementor .am-logo-img img {
+  width: 36px !important;
+  height: 36px !important;
+  display: block !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+}
+.elementor .am-brand-text {
+  display: flex !important;
+  flex-direction: column !important;
+  line-height: 1 !important;
+  gap: 0 !important;
+  padding: 0 !important;
+}
+.elementor .am-brand-name.e-heading-base {
+  font-family: "Manrope", sans-serif !important;
+  font-size: 1.125rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.06em !important;
+  color: #0F1B2A !important;
+  margin: 0 !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+}
+.elementor .am-brand-sub.e-heading-base {
+  font-family: "Inter", sans-serif !important;
+  font-size: 0.6875rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  color: #546577 !important;
+  margin: 4px 0 0 !important;
+  line-height: 1 !important;
+}
+
+/* Nav links group */
+.elementor .am-nav-links {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  flex-direction: row !important;
+  padding: 0 !important;
+}
+@media (max-width: 1023px) {
+  .elementor .am-nav-links { display: none !important; }
+}
+.elementor .am-nav-link.e-button-base {
+  background: transparent !important;
+  color: #2B3B4E !important;
+  border: none !important;
+  padding: 8px 12px !important;
+  font-weight: 600 !important;
+  font-size: 0.9375rem !important;
+  border-radius: 6px !important;
+  min-height: unset !important;
+  width: auto !important;
+  display: inline-flex !important;
+}
+.elementor .am-nav-link.e-button-base:hover {
+  background: #F4F7FA !important;
+  color: #0F1B2A !important;
+}
+
+/* Right side: phone + CTA */
+.elementor .am-nav-right {
+  display: flex !important;
+  align-items: center !important;
+  gap: 20px !important;
+  flex-direction: row !important;
+  flex-shrink: 0;
+  padding: 0 !important;
+}
+@media (max-width: 1023px) {
+  .elementor .am-nav-right { gap: 8px !important; }
+}
+.elementor .am-nav-phone.e-button-base {
+  background: transparent !important;
+  color: #0F1B2A !important;
+  border: none !important;
+  padding: 0 !important;
+  font-weight: 600 !important;
+  font-size: 0.9375rem !important;
+  min-height: unset !important;
+  width: auto !important;
+  display: inline-flex !important;
+  border-radius: 0 !important;
+}
+@media (max-width: 1159px) {
+  .elementor .am-nav-phone { display: none !important; }
+}
+.elementor .am-nav-cta.e-button-base {
+  background: #0A6CD6 !important;
+  color: #ffffff !important;
+  border: 1px solid transparent !important;
+  border-radius: 6px !important;
+  padding: 10px 20px !important;
+  font-weight: 600 !important;
+  font-size: 0.9375rem !important;
+  min-height: 44px !important;
+  display: inline-flex !important;
+  width: auto !important;
+}
+.elementor .am-nav-cta.e-button-base:hover {
+  background: #0858B0 !important;
+}
+
+/* ============================================================
+   FOOTER — Air Mech reference design
+   ============================================================ */
+
+.elementor .am-site-footer {
+  background: #0C2340 !important;
+  color: #B3C3D5 !important;
+  font-size: 0.9375rem !important;
+  display: block !important;
+  width: 100% !important;
+  padding: 0 !important;
+}
+
+.elementor .am-footer-inner {
+  max-width: 1264px !important;
+  margin-inline: auto !important;
+  padding: 56px 32px 32px !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+}
+
+/* Footer 4-column grid */
+.elementor .am-footer-grid {
+  display: grid !important;
+  grid-template-columns: minmax(0,1.4fr) repeat(2, minmax(0,0.8fr)) minmax(0,1.2fr) !important;
+  gap: 48px 32px !important;
+  flex-direction: unset !important;
+  padding: 0 !important;
+  margin-bottom: 48px;
+}
+@media (max-width: 1023px) {
+  .elementor .am-footer-grid {
+    grid-template-columns: repeat(2, minmax(0,1fr)) !important;
+    gap: 40px 32px !important;
+  }
+}
+@media (max-width: 639px) {
+  .elementor .am-footer-grid {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+}
+
+/* Brand column */
+.elementor .am-footer-brand {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 20px !important;
+  padding: 0 !important;
+  align-items: flex-start !important;
+}
+.elementor .am-footer-logo-img img {
+  width: 36px !important;
+  height: 36px !important;
+  display: block !important;
+  background: transparent !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+}
+.elementor .am-footer-brand-text {
+  display: flex !important;
+  flex-direction: column !important;
+  line-height: 1 !important;
+  gap: 0 !important;
+  padding: 0 !important;
+}
+.elementor .am-footer-brand-name.e-heading-base {
+  font-family: "Manrope", sans-serif !important;
+  font-size: 1.125rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.06em !important;
+  color: #fff !important;
+  margin: 0 !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+}
+.elementor .am-footer-brand-sub.e-heading-base {
+  font-size: 0.6875rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  color: #B3C3D5 !important;
+  margin: 4px 0 0 !important;
+  font-family: "Inter", sans-serif !important;
+  line-height: 1 !important;
+}
+.elementor .am-footer-tagline .e-paragraph-base {
+  color: #B3C3D5 !important;
+  font-size: 0.9375rem !important;
+  line-height: 1.6 !important;
+  max-width: 36ch;
+  margin: 0 !important;
+}
+
+/* Footer columns */
+.elementor .am-footer-col {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+  padding: 0 !important;
+  align-items: flex-start !important;
+}
+
+/* Footer section titles */
+.elementor .am-footer-title.e-heading-base {
+  font-family: "Inter", sans-serif !important;
+  font-size: 0.8125rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  color: #ffffff !important;
+  margin: 0 0 6px !important;
+  line-height: 1.3 !important;
+}
+
+/* Footer links (buttons styled as links) */
+.elementor .am-footer-link.e-button-base {
+  background: transparent !important;
+  color: #F2F6FA !important;
+  border: none !important;
+  padding: 0 !important;
+  font-weight: 400 !important;
+  font-size: 0.9375rem !important;
+  min-height: unset !important;
+  width: auto !important;
+  display: inline-flex !important;
+  border-radius: 0 !important;
+  text-decoration: none !important;
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+}
+.elementor .am-footer-link.e-button-base:hover {
+  color: #ffffff !important;
+  text-decoration: underline !important;
+}
+
+/* Footer contact items */
+.elementor .am-footer-contact-item.e-button-base {
+  background: transparent !important;
+  color: #F2F6FA !important;
+  border: none !important;
+  padding: 0 !important;
+  font-size: 0.9375rem !important;
+  min-height: unset !important;
+  width: auto !important;
+  display: inline-flex !important;
+  border-radius: 0 !important;
+  font-weight: 400 !important;
+  justify-content: flex-start !important;
+}
+.elementor .am-footer-contact-item.e-paragraph-base {
+  color: #F2F6FA !important;
+  font-size: 0.9375rem !important;
+  margin: 0 !important;
+  line-height: 1.5 !important;
+}
+.elementor .am-footer-hours.e-paragraph-base {
+  color: #B3C3D5 !important;
+  font-size: 0.875rem !important;
+  margin: 0 !important;
+  line-height: 1.5 !important;
+}
+
+/* Bottom bar */
+.elementor .am-footer-bottom {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: space-between !important;
+  gap: 8px 24px !important;
+  padding: 24px 0 !important;
+  border-top: 1px solid rgba(255,255,255,0.14) !important;
+  flex-direction: row !important;
+}
+@media (max-width: 639px) {
+  .elementor .am-footer-bottom { flex-direction: column !important; }
+}
+.elementor .am-footer-copy.e-heading-base,
+.elementor .am-footer-copy-right.e-heading-base {
+  font-size: 0.8125rem !important;
+  font-weight: 400 !important;
+  color: #B3C3D5 !important;
+  margin: 0 !important;
+  font-family: "Inter", sans-serif !important;
+  letter-spacing: 0 !important;
+  line-height: 1.5 !important;
+}
+
+/* ============================================================
+   HEADER/FOOTER layout fixes — constrain atomic flexbox growth
+   (atomic e-flexbox/e-heading base styles stretch children to
+   full width, which broke the header row layout)
+   ============================================================ */
+
+/* Header row: three groups — brand (left), nav (center, grows),
+   right actions. Keep brand & right at content width. */
+.elementor .am-header-inner > .am-brand {
+  flex: 0 0 auto !important;
+  width: auto !important;
+}
+.elementor .am-header-inner > .am-nav-links {
+  flex: 1 1 auto !important;
+  width: auto !important;
+  justify-content: center !important;
+}
+.elementor .am-header-inner > .am-nav-right {
+  flex: 0 0 auto !important;
+  width: auto !important;
+  justify-content: flex-end !important;
+}
+
+/* Brand text block sizes to its content, not full width */
+.elementor .am-brand-text {
+  width: auto !important;
+  flex: 0 0 auto !important;
+  align-items: flex-start !important;
+}
+.elementor .am-brand-name.e-heading-base,
+.elementor .am-brand-sub.e-heading-base {
+  width: auto !important;
+  white-space: nowrap !important;
+}
+
+/* Logo stays fixed size inside brand */
+.elementor .am-brand > .am-logo-img {
+  flex: 0 0 auto !important;
+  width: auto !important;
+}
+
+/* Nav/right buttons size to their label, not stretched */
+.elementor .am-nav-link.e-button-base,
+.elementor .am-nav-phone.e-button-base,
+.elementor .am-nav-cta.e-button-base,
+.elementor .am-announce-link.e-button-base {
+  flex: 0 0 auto !important;
+  width: auto !important;
+  white-space: nowrap !important;
+}
+
+/* Announcement inner: items size to content */
+.elementor .am-announce-inner > * {
+  flex: 0 0 auto !important;
+  width: auto !important;
+}
+.elementor .am-announce-text.e-paragraph-base { white-space: normal !important; }
+
+/* Footer: headings/links/text size to content so grid columns
+   don't get stretched by 100%-width atomic children */
+.elementor .am-footer-title.e-heading-base,
+.elementor .am-footer-brand-name.e-heading-base,
+.elementor .am-footer-brand-sub.e-heading-base,
+.elementor .am-footer-link.e-button-base,
+.elementor .am-footer-contact-item.e-button-base,
+.elementor .am-footer-copy.e-heading-base,
+.elementor .am-footer-copy-right.e-heading-base {
+  width: auto !important;
+  max-width: 100% !important;
+}
+
+/* ============================================================
+   HEADER mobile collapse fixes — must match/exceed the
+   .e-button-base specificity so hide rules actually win over
+   the base display:inline-flex !important declarations.
+   ============================================================ */
+
+/* Hide center nav links on tablet/mobile (hamburger territory) */
+@media (max-width: 1023px) {
+  .elementor .am-header-inner > .am-nav-links.e-flexbox-base,
+  .elementor .am-nav-link.e-button-base {
+    display: none !important;
+  }
+}
+
+/* Hide the phone button below 1159px (keep the CTA) */
+@media (max-width: 1159px) {
+  .elementor .am-nav-phone.e-button-base {
+    display: none !important;
+  }
+}
+
+/* On mobile, keep the CTA compact and let the brand take the row */
+@media (max-width: 1023px) {
+  .elementor .am-header-inner > .am-nav-right {
+    margin-left: auto !important;
+  }
+  .elementor .am-nav-cta.e-button-base {
+    padding: 8px 14px !important;
+    font-size: 0.875rem !important;
+    min-height: 40px !important;
+  }
+}
+
+/* ============================================================
+   HEADER/FOOTER LOGO & LAYOUT FIXES (v2)
+   Root cause: `.am-logo-img` / `.am-footer-logo-img` ARE the
+   <img> elements (class sits on the img, not a wrapper figure).
+   WordPress emits width="0" height="0" on SVGs, collapsing the
+   img to 0x0. Previous rules targeted `.am-logo-img img`
+   (a non-existent descendant), so nothing sized the image.
+   Fix: size the img element itself and its <a> link wrapper.
+   ============================================================ */
+
+/* The <img> itself carries the am-logo-img / am-footer-logo-img class */
+.elementor img.am-logo-img,
+.elementor img.am-footer-logo-img,
+.elementor .am-logo-img,
+.elementor .am-footer-logo-img {
+  width: 36px !important;
+  height: 36px !important;
+  min-width: 36px !important;
+  min-height: 36px !important;
+  max-width: 36px !important;
+  max-height: 36px !important;
+  display: block !important;
+  object-fit: contain !important;
+  flex-shrink: 0 !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+}
+
+/* The <a> link that wraps the logo img */
+.elementor .am-brand .e-image-link-base,
+.elementor .am-footer-brand .e-image-link-base,
+.elementor a.e-image-link-base:has(> .am-logo-img),
+.elementor a.e-image-link-base:has(> .am-footer-logo-img) {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  width: 36px !important;
+  height: 36px !important;
+  padding: 0 !important;
+  line-height: 0 !important;
+}
+
+/* Brand wrapper keeps logo at fixed size */
+.elementor .am-brand {
+  flex-shrink: 0 !important;
+}
+
+/* Footer bottom bar: prevent copyright text truncation at right edge.
+   Allow the row to wrap so the right text drops below the left copy
+   if horizontal space is tight, and never clip the text. The right
+   padding reserves space so the text clears the floating
+   "scroll to top" button that sits at the bottom-right corner. */
+.elementor .am-footer-bottom {
+  overflow: visible !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  row-gap: 8px !important;
+  padding-right: 56px !important;
+}
+@media (max-width: 639px) {
+  .elementor .am-footer-bottom {
+    padding-right: 0 !important;
+  }
+}
+.elementor .am-footer-copy.e-heading-base,
+.elementor .am-footer-copy-right.e-heading-base {
+  white-space: normal !important;
+  word-break: normal !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+}
+.elementor .am-footer-copy-right.e-heading-base {
+  text-align: right !important;
+}
+@media (max-width: 639px) {
+  .elementor .am-footer-copy-right.e-heading-base {
+    text-align: left !important;
+  }
+}
+
+/* Announcement bar on mobile (<=639px): message text hidden,
+   keep pill + link row centered. */
+@media (max-width: 639px) {
+  .elementor .am-announce-inner {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+  }
+}
+
+/* ============================================================
+   Footer brand: logo + brand-text side-by-side (row 1),
+   tagline below (row 2). Matches header brand layout.
+
+   ACTUAL DOM (verified against rendered homepage):
+     .am-footer-brand
+       > a.e-image-link-base          (logo wrapper, child 1)
+           > img.am-footer-logo-img
+       > div.am-footer-brand-text     (child 2)
+       > p.am-footer-tagline          (child 3)
+   The children are NOT .elementor-widget-e-image / .elementor-
+   element wrappers, so placement rules target direct children
+   generically (and by class) rather than widget selectors.
+   ============================================================ */
+.elementor .am-footer-brand {
+  display: grid !important;
+  grid-template-rows: auto auto;
+  grid-template-columns: 36px 1fr;
+  column-gap: 10px !important;
+  row-gap: 0 !important;
+  align-items: start;
+}
+/* Logo: row 1, col 1 */
+.elementor .am-footer-brand > a.e-image-link-base,
+.elementor .am-footer-brand > :nth-child(1) {
+  grid-row: 1;
+  grid-column: 1;
+  align-self: center;
+}
+/* Brand text: row 1, col 2 */
+.elementor .am-footer-brand > .am-footer-brand-text,
+.elementor .am-footer-brand > :nth-child(2) {
+  grid-row: 1;
+  grid-column: 2;
+  align-self: center;
+}
+/* Tagline: row 2, spans both columns */
+.elementor .am-footer-brand > .am-footer-tagline,
+.elementor .am-footer-brand > :nth-child(3) {
+  grid-row: 2;
+  grid-column: 1 / -1;
+  margin-top: 16px !important;
+}
+
+/* ============================================================
+   VALUE STRIP ICONS (CSS pseudo-element approach)
+   Each tile in am-value-inner uses am-icon-box class.
+   We add a colored icon via mask-image on ::before.
+   ============================================================ */
+
+/* Icon base style shared by all value tiles */
+.elementor .am-value-inner .am-icon-box::before {
+  content: "";
+  display: block;
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  margin-top: 2px;
+  background-color: #0A6CD6;
+  flex-shrink: 0;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+/* Tile 1: thermometer */
+.elementor .am-value-inner .am-icon-box:nth-child(1)::before {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3E%3Cpath d=\'M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z\'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3E%3Cpath d=\'M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z\'/%3E%3C/svg%3E");
+}
+
+/* Tile 2: shield */
+.elementor .am-value-inner .am-icon-box:nth-child(2)::before {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3E%3Cpath d=\'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3E%3Cpath d=\'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\'/%3E%3C/svg%3E");
+}
+
+/* Tile 3: bolt/zap */
+.elementor .am-value-inner .am-icon-box:nth-child(3)::before {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3E%3Cpolygon points=\'13 2 3 14 12 14 11 22 21 10 12 10 13 2\'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3E%3Cpolygon points=\'13 2 3 14 12 14 11 22 21 10 12 10 13 2\'/%3E%3C/svg%3E");
+}
+
+/* Tile 4: leaf */
+.elementor .am-value-inner .am-icon-box:nth-child(4)::before {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3E%3Cpath d=\'M17 8C8 10 5.9 16.17 3.82 22M9.1 17.1A9 9 0 0 1 16 3c1 2.4-.7 5.4-3 7.9\'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3E%3Cpath d=\'M17 8C8 10 5.9 16.17 3.82 22M9.1 17.1A9 9 0 0 1 16 3c1 2.4-.7 5.4-3 7.9\'/%3E%3C/svg%3E");
+}
+
+/* Make each value tile flex row to show icon + text side by side */
+.elementor .am-value-inner .am-icon-box {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: flex-start !important;
+  gap: 12px !important;
+}
+
+/* ============================================================
+   WHY MACMA FEATURE GRID
+   ============================================================ */
+
+/* Feature item: icon left + body right */
+.elementor .am-feature-item {
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 16px !important;
+  align-items: flex-start !important;
+  padding: 0 !important;
+}
+
+/* Icon box: blue square with icon */
+.elementor .am-feature-icon {
+  display: grid !important;
+  place-items: center !important;
+  width: 44px !important;
+  min-width: 44px !important;
+  height: 44px !important;
+  border-radius: 6px !important;
+  background: #E6F0FB !important;
+  flex-shrink: 0 !important;
+  padding: 0 !important;
+}
+
+/* Icon pseudo-element -- wave/sine for inverter */
+.elementor .am-feat-inverter::before {
+  content: "";
+  display: block;
+  width: 22px; height: 22px;
+  background-color: #0A6CD6;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3E%3Cpath d=\'M2 12s3-6 5-6 3.5 6 6 6 5-6 5-6\'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3E%3Cpath d=\'M2 12s3-6 5-6 3.5 6 6 6 5-6 5-6\'/%3E%3C/svg%3E");
+  -webkit-mask-size: contain; mask-size: contain;
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+}
+.elementor .am-feat-tropical::before {
+  content: ""; display: block; width: 22px; height: 22px; background-color: #0A6CD6;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3E%3Cpath d=\'M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z\'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3E%3Cpath d=\'M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z\'/%3E%3C/svg%3E");
+  -webkit-mask-size: contain; mask-size: contain; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+}
+.elementor .am-feat-goldfin::before {
+  content: ""; display: block; width: 22px; height: 22px; background-color: #0A6CD6;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3E%3Cpath d=\'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3E%3Cpath d=\'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\'/%3E%3C/svg%3E");
+  -webkit-mask-size: contain; mask-size: contain; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+}
+.elementor .am-feat-voltage::before {
+  content: ""; display: block; width: 22px; height: 22px; background-color: #0A6CD6;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3E%3Cpolygon points=\'13 2 3 14 12 14 11 22 21 10 12 10 13 2\'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3E%3Cpolygon points=\'13 2 3 14 12 14 11 22 21 10 12 10 13 2\'/%3E%3C/svg%3E");
+  -webkit-mask-size: contain; mask-size: contain; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+}
+.elementor .am-feat-autorestart::before {
+  content: ""; display: block; width: 22px; height: 22px; background-color: #0A6CD6;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3E%3Ccircle cx=\'12\' cy=\'12\' r=\'10\'/%3E%3Cline x1=\'12\' y1=\'8\' x2=\'12\' y2=\'12\'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3E%3Ccircle cx=\'12\' cy=\'12\' r=\'10\'/%3E%3Cline x1=\'12\' y1=\'8\' x2=\'12\' y2=\'12\'/%3E%3C/svg%3E");
+  -webkit-mask-size: contain; mask-size: contain; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+}
+.elementor .am-feat-quiet::before {
+  content: ""; display: block; width: 22px; height: 22px; background-color: #0A6CD6;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3E%3Cpolygon points=\'11 5 6 9 2 9 2 15 6 15 11 19 11 5\'/%3E%3Cpath d=\'M15.54 8.46a5 5 0 0 1 0 7.07\'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3E%3Cpolygon points=\'11 5 6 9 2 9 2 15 6 15 11 19 11 5\'/%3E%3Cpath d=\'M15.54 8.46a5 5 0 0 1 0 7.07\'/%3E%3C/svg%3E");
+  -webkit-mask-size: contain; mask-size: contain; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+}
+
+/* Feature body text */
+.elementor .am-feature-body {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+  padding: 0 !important;
+  min-width: 0;
+}
+.elementor .am-feature-title.e-heading-base {
+  font-size: 1.0625rem !important;
+  font-weight: 700 !important;
+  color: #0F1B2A !important;
+  margin: 2px 0 0 !important;
+  letter-spacing: -0.01em !important;
+  line-height: 1.3 !important;
+}
+.elementor .am-feature-text.e-paragraph-base {
+  color: #546577 !important;
+  font-size: 0.9375rem !important;
+  line-height: 1.55 !important;
+  margin: 0 !important;
+}
+
+/* ============================================================
+   ONE TEAM SECTION: header row with button right-aligned
+   ============================================================ */
+
+.elementor .am-team-header-row {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: flex-end !important;
+  justify-content: space-between !important;
+  gap: 16px 32px !important;
+  flex-wrap: wrap !important;
+  padding: 0 !important;
+  width: 100%;
+}
+.elementor .am-team-head-left {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+  padding: 0 !important;
+  flex: 1 1 auto;
+  max-width: 640px;
+  min-width: 0;
+}
+.elementor .am-team-head-right {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-end !important;
+  justify-content: flex-end !important;
+  padding: 0 !important;
+  flex-shrink: 0;
+}
+
+/* Our services button in dark section */
+.elementor .am-team-head-right .am-btn-outline.e-button-base,
+.elementor .am-section-dark .am-team-head-right a.am-btn-outline.e-button-base {
+  background: transparent !important;
+  color: #ffffff !important;
+  border-width: 1px !important;
+  border-style: solid !important;
+  border-color: rgba(255,255,255,0.4) !important;
+  border-radius: 6px !important;
+  padding: 10px 20px !important;
+  font-weight: 600 !important;
+  font-size: 0.9375rem !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  text-decoration: none !important;
+  white-space: nowrap;
+}
+
+/* ============================================================
+   CAPACITY FINDER SECTION (am-sizing)
+   ============================================================ */
+
+.elementor .am-sizing-inner {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+  max-width: 1264px;
+  margin-inline: auto;
+  padding-inline: 32px;
+  box-sizing: border-box;
+  width: 100%;
+}
+.elementor .am-sizing-inner > .elementor-widget-e-heading:nth-child(2) {
+  margin-bottom: 8px;
+}
+.elementor .am-sizing-inner > .elementor-widget-e-paragraph .e-paragraph-base {
+  color: #546577;
+  font-size: 1.0625rem;
+  max-width: 64ch;
+  margin-bottom: 32px;
+}
+
+/* Finder two-column layout */
+.am-finder {
+  display: grid;
+  border: 1px solid #DFE5EC;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+  margin-top: 8px;
+}
+@media (min-width: 900px) {
+  .am-finder { grid-template-columns: minmax(0,1.1fr) minmax(0,1fr); }
+}
+
+.am-finder-form {
+  display: grid;
+  gap: 18px;
+  align-content: start;
+  padding: 32px;
+}
+.am-finder-field label {
+  display: block;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #0F1B2A;
+  margin-bottom: 6px;
+}
+.am-finder-input {
+  width: 100%;
+  min-height: 46px;
+  padding: 10px 12px;
+  border: 1px solid #C5D0DB;
+  border-radius: 6px;
+  background: #fff;
+  color: #0F1B2A;
+  font-size: 1rem;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+select.am-finder-input {
+  appearance: none;
+  padding-right: 40px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23546577' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 18px;
+}
+.am-finder-check {
+  display: flex !important;
+  align-items: center;
+  gap: 10px;
+}
+.am-finder-check input { width: 20px; height: 20px; margin: 0; accent-color: #0A6CD6; }
+.am-finder-check label { margin: 0; }
+
+.am-finder-result {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 32px;
+  background: #0C2340;
+  color: #F2F6FA;
+}
+.am-finder-label, .am-finder-sub {
+  margin: 0;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #B3C3D5;
+}
+.am-finder-sub { margin-top: 16px; }
+.am-finder-value {
+  margin: 0;
+  font-family: 'Manrope', sans-serif;
+  font-size: clamp(2.5rem, 2rem + 2vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.05;
+  color: #fff;
+}
+.am-finder-value span { font-size: 0.45em; color: #46CBF2; }
+.am-finder-meta { margin: 0; color: #B3C3D5; font-size: 0.9375rem; }
+.am-finder-matches { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+.am-finder-matches a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 6px;
+  color: #fff;
+  text-decoration: none;
+}
+.am-finder-matches a:hover { border-color: #46CBF2; background: rgba(255,255,255,0.04); }
+.am-finder-matches strong { display: block; }
+.am-finder-matches small, .am-finder-matches span:not(.am-finder-model) { display: block; color: #B3C3D5; font-size: 0.8125rem; }
+.am-finder-model { font-size: 0.875rem; font-weight: 600; color: #46CBF2; white-space: nowrap; }
+.am-finder-note { margin: auto 0 0; padding-top: 16px; font-size: 0.8125rem; color: #B3C3D5; }
+
+/* ============================================================
+   PRODUCT CARD BADGE: overlay on image (top-left)
+   NOTE: In the rendered DOM the badge (p.am-product-card-badge)
+   is a SIBLING of the image (img.am-product-card-img) inside the
+   card flexbox, not a child of the image. An <img> cannot be a
+   positioning context for a sibling, so we make the CARD itself
+   position:relative and absolutely position the badge over the
+   top-left of the image area.
+   ============================================================ */
+
+/* Card becomes the positioning context for the overlaid badge */
+.elementor .am-product-card {
+  position: relative !important;
+}
+
+/* Badge: absolute top-left over the image area */
+.elementor p.am-product-card-badge {
+  position: absolute !important;
+  top: 12px !important;
+  left: 12px !important;
+  right: auto !important;
+  z-index: 2 !important;
+  margin: 0 !important;
+  align-self: auto !important;
+  background: #0C2340 !important;
+  color: #ffffff !important;
+  border-radius: 999px !important;
+  padding: 3px 9px !important;
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em !important;
+  font-family: "Inter", sans-serif !important;
+  line-height: 1.4 !important;
+  width: auto !important;
+  max-width: fit-content !important;
+}
+
+/* First text sibling after the image no longer needs top spacing
+   reserved for the (now overlaid) badge */
+.elementor .am-product-card-type {
+  margin-top: 8px !important;
+}
+
+/* ============================================================
+   PASS 2 — REMAINING VISUAL MISMATCH FIXES
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   Fix A: VALUE STRIP tiles — force HORIZONTAL (icon left, text right)
+   Higher specificity than the atomic base column override.
+   ------------------------------------------------------------ */
+.elementor .am-value-strip .am-value-inner .am-icon-box,
+.elementor .am-value-inner > .am-icon-box,
+.elementor .am-value-inner > .elementor-element.am-icon-box {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: flex-start !important;
+  gap: 12px !important;
+  box-sizing: border-box !important;
+}
+/* Text stack sits to the right of the icon and grows */
+.elementor .am-value-inner .am-icon-box > .e-heading-base,
+.elementor .am-value-inner .am-icon-box > .e-paragraph-base {
+  flex: 0 1 auto !important;
+}
+.elementor .am-value-inner .am-icon-box::before {
+  flex-shrink: 0 !important;
+  margin-top: 2px !important;
+}
+
+/* ------------------------------------------------------------
+   Fix B: VALUE STRIP background — white with bottom border
+   ------------------------------------------------------------ */
+.elementor .am-value-strip {
+  background: #ffffff !important;
+  border-bottom: 1px solid #DFE5EC !important;
+}
+
+/* ------------------------------------------------------------
+   Fix C: WHY MACMA section — light grey #F4F7FA
+   ------------------------------------------------------------ */
+.elementor .am-section-alt.am-why-macma,
+.elementor .am-section-alt {
+  background: #F4F7FA !important;
+}
+
+/* ------------------------------------------------------------
+   Fix E: STEP COUNTER — larger, prominent block above the title
+   ------------------------------------------------------------ */
+.elementor .am-step::before {
+  content: counter(step, decimal-leading-zero) !important;
+  display: block !important;
+  font-family: 'Manrope', sans-serif !important;
+  font-size: 2.25rem !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  letter-spacing: -0.01em !important;
+  color: #46CBF2 !important;
+  margin-bottom: 16px !important;
+  width: 100% !important;
+  position: static !important;
+  top: unset !important;
+  left: unset !important;
+  order: -1 !important;
+}
+
+/* ------------------------------------------------------------
+   Fix F: PRODUCT RANGE — section-head-row (heading left, view-all right)
+   ------------------------------------------------------------ */
+.elementor .am-range-head-row {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: flex-end !important;
+  justify-content: space-between !important;
+  gap: 16px 32px !important;
+  flex-wrap: wrap !important;
+  width: 100% !important;
+  padding: 0 !important;
+  margin-bottom: 8px !important;
+}
+.elementor .am-range-head-left {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+  padding: 0 !important;
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: 640px;
+}
+.elementor .am-range-head-right {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-end !important;
+  justify-content: flex-end !important;
+  padding: 0 !important;
+  flex-shrink: 0;
+}
+/* The native product grid sits directly under the head row.
+   Reset its top margin since the head-row owns the spacing. */
+.elementor .am-range-head-row + .am-product-grid-native {
+  margin-top: 32px !important;
+}
+
+/* 'View all products' rendered as a link-arrow style, right-aligned */
+.elementor .am-range-view-all.e-button-base,
+.elementor a.am-range-view-all.e-button-base {
+  background: transparent !important;
+  color: #0A6CD6 !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  font-weight: 600 !important;
+  font-size: 0.9375rem !important;
+  min-height: unset !important;
+  width: auto !important;
+  max-width: fit-content !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  border-radius: 0 !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+}
+.elementor .am-range-view-all.e-button-base:hover,
+.elementor a.am-range-view-all.e-button-base:hover {
+  color: #0858B0 !important;
+  text-decoration: none !important;
+}
+
+/* Stack the head row on small screens */
+@media (max-width: 767px) {
+  .elementor .am-range-head-row {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+  .elementor .am-range-head-right {
+    align-items: flex-start !important;
+  }
+}
+
+/* ============================================================
+   FINAL POLISH PASS
+   ============================================================ */
+
+/* Value strip: larger, more prominent icons */
+.elementor .am-value-inner .am-icon-box::before {
+  width: 24px !important;
+  height: 24px !important;
+  min-width: 24px !important;
+}
+
+/* Hero: ensure media box has good proportions */
+.elementor .am-hero-col-right > .elementor-element:not(.am-hero-chip) {
+  min-height: 300px !important;
+}
+
+/* Capacity finder: pre-fill placeholder styling */
+.am-finder-input:not(select) {
+  color: #0F1B2A;
+}
+.am-finder-input::placeholder { color: #8E9BAA; }
+
+/* One Team: step counter clear separation from title */
+.elementor .am-step {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+  align-items: flex-start !important;
+}
+.elementor .am-step::before {
+  margin-bottom: 16px !important;
+  line-height: 1 !important;
+}
+.elementor .am-step .e-heading-base {
+  margin-top: 0 !important;
+  line-height: 1.3 !important;
+}
+
+/* Product cards: ensure badge is fully overlaid */
+.am-product-card {
+  position: relative !important;
+}
+.am-product-card .am-product-card-badge {
+  position: absolute !important;
+  top: 12px !important;
+  left: 12px !important;
+  z-index: 3 !important;
+  order: -99 !important;
+}
+
+/* Why Macma: feature icon box uses blue-soft background */
+.elementor .am-feature-icon {
+  background: #EAF2FB !important;
+  border: 1px solid #D6E7FA !important;
+}
+
+/* Section spacing consistency */
+.elementor .am-section,
+.elementor .am-section-alt {
+  padding-block: 96px !important;
+}
+@media (max-width: 767px) {
+  .elementor .am-section,
+  .elementor .am-section-alt {
+    padding-block: 56px !important;
+  }
+}

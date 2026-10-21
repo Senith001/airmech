@@ -1,0 +1,268 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "rt-mega-menu/mega-menu",
+    "version": "1.0.0",
+    "title": "RT Mega Menu",
+    "category": "rt-mega-menu",
+    "icon": "menu",
+    "description": "Display a RT Mega Menu with full style customization.",
+    "supports": {
+        "html": false,
+        "reusable": false
+    },
+    "attributes": {
+        "menu_slug": {
+            "type": "string",
+            "default": ""
+        },
+        "menu_layout": {
+            "type": "string",
+            "default": "horizontal"
+        },
+        "submenu_icon_style": {
+            "type": "string",
+            "default": "icon1"
+        },
+        "vertical_active_menu_style": {
+            "type": "string",
+            "default": "icon1"
+        },
+        "enable_vertical_menu_arrow": {
+            "type": "boolean",
+            "default": false
+        },
+        "vertical_menu_arrow_type": {
+            "type": "string",
+            "default": "rtmega-single-arrow"
+        },
+        "enable_vertical_menu_arrow_right": {
+            "type": "boolean",
+            "default": true
+        },
+        "verticla_custom_menu_icon": {
+            "type": "string",
+            "default": ""
+        },
+        "vertical_menu_close_icon": {
+            "type": "string",
+            "default": "far fa-window-close"
+        },
+        "vertical_menu_toggle_icon": {
+            "type": "string",
+            "default": "fas fa-bars"
+        },
+        "vertical_menu_expand_mode": {
+            "type": "string",
+            "default": "always_expand"
+        },
+        "vertical_menu_expand_position": {
+            "type": "string",
+            "default": "bottom"
+        },
+        "vertical_menu_expand_overlay_position": {
+            "type": "string",
+            "default": "top"
+        },
+        "pointer_menu_item": {
+            "type": "string",
+            "default": "none"
+        },
+        "enableMobileMenu": {
+            "type": "boolean",
+            "default": true
+        },
+        "mobileMenuOpenPosition": {
+            "type": "string",
+            "default": "right"
+        },
+        "mobileMenuIcon": {
+            "type": "string",
+            "default": "fas fa-bars"
+        },
+        "menuAlign": {
+            "type": "string",
+            "default": "left"
+        },
+        "menuAlignTablet": {
+            "type": "string"
+        },
+        "menuAlignMobile": {
+            "type": "string"
+        },
+        "wrapperBgColor": {
+            "type": "string"
+        },
+        "wrapperBgGradient": {
+            "type": "string"
+        },
+        "wrapperPadding": {
+            "type": "object",
+            "default": {}
+        },
+        "wrapperPaddingTablet": {
+            "type": "object",
+            "default": {}
+        },
+        "wrapperPaddingMobile": {
+            "type": "object",
+            "default": {}
+        },
+        "wrapperMargin": {
+            "type": "object",
+            "default": {}
+        },
+        "wrapperMarginTablet": {
+            "type": "object",
+            "default": {}
+        },
+        "wrapperMarginMobile": {
+            "type": "object",
+            "default": {}
+        },
+        "menuItemColor": {
+            "type": "string"
+        },
+        "menuItemHoverColor": {
+            "type": "string"
+        },
+        "menuItemBgColor": {
+            "type": "string"
+        },
+        "menuItemBgGradient": {
+            "type": "string"
+        },
+        "menuItemHoverBgColor": {
+            "type": "string"
+        },
+        "menuItemHoverBgGradient": {
+            "type": "string"
+        },
+        "menuTypography": {
+            "type": "object",
+            "default": {}
+        },
+        "menuTypographyTablet": {
+            "type": "object",
+            "default": {}
+        },
+        "menuTypographyMobile": {
+            "type": "object",
+            "default": {}
+        },
+        "menuPadding": {
+            "type": "object",
+            "default": {}
+        },
+        "menuPaddingTablet": {
+            "type": "object",
+            "default": {}
+        },
+        "menuPaddingMobile": {
+            "type": "object",
+            "default": {}
+        },
+        "menuMargin": {
+            "type": "object",
+            "default": {}
+        },
+        "menuMarginTablet": {
+            "type": "object",
+            "default": {}
+        },
+        "menuMarginMobile": {
+            "type": "object",
+            "default": {}
+        },
+        "menuSpaceBetween": {
+            "type": "string",
+            "default": "0px"
+        },
+        "menuSpaceBetweenTablet": {
+            "type": "string",
+            "default": "0px"
+        },
+        "menuSpaceBetweenMobile": {
+            "type": "string",
+            "default": "0px"
+        },
+        "submenuBgColor": {
+            "type": "string"
+        },
+        "submenuBgGradient": {
+            "type": "string"
+        },
+        "subMenuSpaceBetween": {
+            "type": "string",
+            "default": "0px"
+        },
+        "subMenuSpaceBetweenTablet": {
+            "type": "string",
+            "default": "0px"
+        },
+        "subMenuSpaceBetweenMobile": {
+            "type": "string",
+            "default": "0px"
+        },
+        "submenuItemPadding": {
+            "type": "object",
+            "default": {}
+        },
+        "submenuItemPaddingTablet": {
+            "type": "object",
+            "default": {}
+        },
+        "submenuItemPaddingMobile": {
+            "type": "object",
+            "default": {}
+        },
+        "submenuItemColor": {
+            "type": "string"
+        },
+        "submenuItemHoverColor": {
+            "type": "string"
+        },
+        "submenuItemBgColor": {
+            "type": "string"
+        },
+        "submenuItemHoverBgColor": {
+            "type": "string"
+        },
+        "submenuTypography": {
+            "type": "object",
+            "default": {}
+        },
+        "boxShadow": {
+            "type": "string"
+        },
+        "boxShadowX": {
+            "type": "number",
+            "default": 0
+        },
+        "boxShadowY": {
+            "type": "number",
+            "default": 0
+        },
+        "boxShadowBlur": {
+            "type": "number",
+            "default": 0
+        },
+        "boxShadowSpread": {
+            "type": "number",
+            "default": 0
+        },
+        "boxShadowColor": {
+            "type": "string",
+            "default": "rgba(0,0,0,0.1)"
+        },
+        "mobileMenuSlug": {
+            "type": "string",
+            "default": ""
+        }
+    },
+    "textdomain": "rt-mega-menu",
+    "editorScript": "file:./index.js",
+    "editorStyle": "file:./index.css",
+    "style": "rtmegamenu-style",
+    "render": "file:./render.php"
+}

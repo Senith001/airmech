@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480" width="480" height="480" role="img" aria-label="Macma wireless remote control">
+  <!-- Placeholder illustration. Replace with an official Macma product photo. -->
+  <defs>
+    <linearGradient id="rcBody" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#E3E9EF"/>
+    </linearGradient>
+    <filter id="rcShadow" x="-30%" y="-10%" width="160%" height="120%">
+      <feGaussianBlur stdDeviation="10"/>
+    </filter>
+  </defs>
+  <rect x="180" y="40" width="130" height="410" rx="44" fill="#0F1B2A" opacity="0.12" filter="url(#rcShadow)"/>
+  <rect x="172" y="28" width="136" height="420" rx="44" fill="url(#rcBody)" stroke="#D2DAE3" stroke-width="2"/>
+  <rect x="192" y="62" width="96" height="92" rx="10" fill="#17212C"/>
+  <text x="240" y="114" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700" fill="#7ADAF6">24°</text>
+  <text x="240" y="138" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700" letter-spacing="2" fill="#7ADAF6">COOL</text>
+  <circle cx="240" cy="196" r="22" fill="#0A6CD6"/>
+  <path d="M240 186v10M233 190a10 10 0 1 0 14 0" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+  <g fill="#E6ECF1" stroke="#D2DAE3" stroke-width="2">
+    <rect x="196" y="238" width="40" height="28" rx="14"/>
+    <rect x="244" y="238" width="40" height="28" rx="14"/>
+    <rect x="196" y="276" width="40" height="28" rx="14"/>
+    <rect x="244" y="276" width="40" height="28" rx="14"/>
+    <rect x="196" y="314" width="40" height="28" rx="14"/>
+    <rect x="244" y="314" width="40" height="28" rx="14"/>
+  </g>
+  <text x="240" y="404" text-anchor="middle" font-family="Manrope, Arial, Helvetica, sans-serif" font-size="13" font-weight="800" letter-spacing="4" fill="#8E9BA9">MACMA</text>
+</svg>

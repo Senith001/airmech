@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact Us | Air Mech Engineering Works</title>
+  <meta name="description" content="Contact Air Mech Engineering Works for Macma air conditioner quotes, site visits, installation, servicing and repairs in Sri Lanka.">
+  <link rel="canonical" href="https://airmech.lk/contact.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Air Mech Engineering Works">
+  <meta property="og:title" content="Contact Us | Air Mech Engineering Works">
+  <meta property="og:description" content="Quotes, site visits, installation, servicing and repairs.">
+  <meta property="og:url" content="https://airmech.lk/contact.html">
+  <meta name="theme-color" content="#0C2340">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/config.js" defer></script>
+  <script src="js/products.js" defer></script>
+  <script src="js/icons.js" defer></script>
+  <script src="js/ui.js" defer></script>
+  <script src="js/layout.js" defer></script>
+  <script src="js/contact.js" defer></script>
+</head>
+<body data-page="contact">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="site-header-slot"></div>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li><span aria-current="page">Contact</span></li>
+          </ol>
+        </nav>
+        <p class="eyebrow">Contact</p>
+        <h1>Let’s find the right cooling for your space</h1>
+        <p class="lead">Ask about a Macma model, request a quote or book a service, and we’ll get back to you as soon as we can.</p>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Contact options">
+      <div class="container contact-layout">
+        <div class="form-card">
+          <h2>Send an enquiry</h2>
+          <p>Fields marked * are required.</p>
+
+          <form id="enquiry-form" class="form-grid" novalidate>
+            <div class="field-row">
+              <div class="field">
+                <label for="name">Name *</label>
+                <input class="input" id="name" name="name" type="text" autocomplete="name" required aria-describedby="name-error">
+                <p class="field-error" id="name-error" hidden></p>
+              </div>
+              <div class="field">
+                <label for="phone">Phone *</label>
+                <input class="input" id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="07X XXX XXXX" required aria-describedby="phone-error">
+                <p class="field-error" id="phone-error" hidden></p>
+              </div>
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="email">Email <span class="field-optional">(optional)</span></label>
+                <input class="input" id="email" name="email" type="email" autocomplete="email" aria-describedby="email-error">
+                <p class="field-error" id="email-error" hidden></p>
+              </div>
+              <div class="field">
+                <label for="location">City or area <span class="field-optional">(optional)</span></label>
+                <input class="input" id="location" name="location" type="text" autocomplete="address-level2">
+              </div>
+            </div>
+            <div class="field">
+              <label for="interest">I’m interested in</label>
+              <select class="input" id="interest" name="interest"></select>
+            </div>
+            <div class="field">
+              <label for="message">Message <span class="field-optional">(optional)</span></label>
+              <textarea class="input" id="message" name="message" rows="5" placeholder="Room sizes, number of units, preferred visit times…"></textarea>
+            </div>
+
+            <div class="form-status" id="form-status" role="status" hidden></div>
+
+            <div class="form-actions" id="form-actions"></div>
+            <p class="form-privacy">We only use your details to reply to this enquiry.</p>
+          </form>
+        </div>
+
+        <ul class="contact-cards">
+          <li class="contact-card">
+            <span class="feature-icon"><span data-icon="phone"></span></span>
+            <div>
+              <h2>Call us</h2>
+              <p><a data-contact="phone" href="#"></a></p>
+            </div>
+          </li>
+          <li class="contact-card">
+            <span class="feature-icon"><span data-icon="whatsapp"></span></span>
+            <div>
+              <h2>WhatsApp</h2>
+              <p><a data-contact="whatsapp" data-message="Hi Air Mech, I have a question about Macma air conditioners." href="#">Start a chat</a></p>
+            </div>
+          </li>
+          <li class="contact-card">
+            <span class="feature-icon"><span data-icon="mail"></span></span>
+            <div>
+              <h2>Email</h2>
+              <p><a data-contact="email" href="#"></a></p>
+            </div>
+          </li>
+          <li class="contact-card">
+            <span class="feature-icon"><span data-icon="mapPin"></span></span>
+            <div>
+              <h2>Office</h2>
+              <p data-contact="address"></p>
+              <p class="contact-meta"><a data-contact="map" href="#">Open in Google Maps</a></p>
+            </div>
+          </li>
+          <li class="contact-card">
+            <span class="feature-icon"><span data-icon="clock"></span></span>
+            <div>
+              <h2>Opening hours</h2>
+              <p data-contact="hours"></p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer-slot"></div>
+</body>
+</html>

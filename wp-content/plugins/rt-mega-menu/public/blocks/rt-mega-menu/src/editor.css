@@ -1,0 +1,41 @@
+.rt-mega-menu-placeholder {
+    padding: 40px 20px;
+    text-align: center;
+    background: #f0f0f1;
+    border: 2px dashed #c3c4c7;
+    border-radius: 4px;
+    color: #50575e;
+    font-size: 14px;
+}
+
+.rt-mega-menu-preview {
+    padding: 20px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.rt-mega-menu-preview strong {
+    display: block;
+    margin-bottom: 8px;
+    color: #1e1e1e;
+    font-size: 14px;
+}
+
+.rt-mega-menu-preview small {
+    color: #757575;
+    font-size: 12px;
+}
+
+/* Color palette styling */
+.components-panel__body .components-color-palette {
+    margin-top: 8px;
+}
+
+.components-panel__body .components-panel__row {
+    margin-bottom: 16px;
+}
+
+.components-panel__body .components-panel__row:last-child {
+    margin-bottom: 0;
+}

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Add a <url> entry for each new product id added in js/products.js. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://airmech.lk/</loc></url>
+  <url><loc>https://airmech.lk/macma.html</loc></url>
+  <url><loc>https://airmech.lk/products.html</loc></url>
+  <url><loc>https://airmech.lk/product.html?id=aero</loc></url>
+  <url><loc>https://airmech.lk/product.html?id=prime</loc></url>
+  <url><loc>https://airmech.lk/product.html?id=cassette</loc></url>
+  <url><loc>https://airmech.lk/services.html</loc></url>
+  <url><loc>https://airmech.lk/about.html</loc></url>
+  <url><loc>https://airmech.lk/contact.html</loc></url>
+</urlset>
